@@ -1,9 +1,8 @@
+import Cube from "../Components/Cube.jsx";
 function About() {
     return (
         <>
-            <section>
-                Sick place bro.
-            </section>
+            <Cube/>
         </>
     )
 }

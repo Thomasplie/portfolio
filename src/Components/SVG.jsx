@@ -14,6 +14,12 @@ function Test() {
                 <rect width="200" height="200" x="400" y="200" fill="#004346"
                       className="transform transition-transform duration-300 hover:rotate-90"/>
             </svg>
+
+            <svg width="600" height="600" className="border-2" viewBox="0 0 200 200">
+
+                <path d="M 50, 100 L 150, 100"/>
+
+            </svg>
         </>
     );
 }

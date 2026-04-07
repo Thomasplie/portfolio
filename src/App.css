@@ -1,1 +1,157 @@
 @import "tailwindcss";
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+* {
+    scrollbar-width: none;
+}
+
+@property --angle {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+}
+
+.contact-btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.65rem 1.4rem;
+    border-radius: 0.75rem;
+    background: #09BC8A;
+    color: #000000;
+    font-weight: 600;
+    text-decoration: none;
+    z-index: 0;
+    overflow: hidden;
+
+    /* smooth size animation */
+    transform: scale(1);
+    transform-origin: center;
+    transition: transform 0.35s ease;
+    will-change: transform;
+}
+
+.contact-btn span {
+    position: relative;
+    z-index: 1;
+}
+
+.contact-btn::before,
+.contact-btn::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 2px;
+
+    background: conic-gradient(
+            from var(--angle),
+            transparent 0deg,
+            #F17F29 40deg,
+            #ffd166 90deg,
+            #F17F29 140deg,
+            transparent 220deg
+    );
+
+    -webkit-mask: linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+
+    opacity: 0;
+    animation: spin-border 2.5s linear infinite;
+    pointer-events: none;
+}
+
+/* border */
+.contact-btn::before {
+    z-index: -1;
+    transition: opacity 0.35s ease;
+}
+
+/* glow */
+.contact-btn::after {
+    z-index: -2;
+    filter: blur(10px);
+    transition: opacity 0.35s ease;
+}
+
+/* hover state */
+.contact-btn:hover {
+    transform: scale(1.05);
+}
+
+.contact-btn:hover::before,
+.contact-btn:hover::after {
+    opacity: 1;
+}
+
+@keyframes spin-border {
+    from {
+        --angle: 0deg;
+    }
+    to {
+        --angle: 360deg;
+    }
+}
+
+/* End of button styling */
+
+/*.carousel{*/
+/*    margin: 100px auto;*/
+/*    width: 90%;*/
+/*    border: 5px solid red;*/
+/*    display: flex;*/
+/*    overflow-x: auto;*/
+/*}*/
+
+/*.carousel::-webkit-scrollbar {*/
+/*    display:none;*/
+/*}*/
+
+/*.group{*/
+/*    display: flex;*/
+/*    align-items: center;*/
+/*    justify-content: center;*/
+/*    gap: 1em;*/
+/*    animation: carousel 6s infinite linear;*/
+/*    padding-right: 1em;*/
+/*}*/
+
+/*.card{*/
+/*    flex: 0 0 5em;*/
+/*    height: 5em;*/
+/*    padding: 1em;*/
+/*    background: aqua;*/
+/*    font-size: 3rem;*/
+/*    border-radius: .2em;*/
+/*    text-align: center;*/
+/*    align-content: center*/
+/*}*/
+
+@keyframes carousel {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+.animate-carousel {
+    will-change: transform;
+}
+
+.carousel-viewport {
+    overflow-x: clip;
+    overflow-y: visible;
+    scrollbar-width: none;
+}
+
+.carousel-viewport::-webkit-scrollbar {
+    display: none;
+}

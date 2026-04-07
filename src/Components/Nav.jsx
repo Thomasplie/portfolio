@@ -1,5 +1,5 @@
 import {NavLink} from "react-router";
-import Logo from "../assets/T.png";
+import Logo from "../assets/TnoBG.png";
 
 function Nav() {
     const navLinkClass = ({isActive}) => `h-full inline-flex items-center px-4 border-b-4 transition-colors duration-200 
@@ -7,7 +7,7 @@ function Nav() {
 
     return (
         <nav>
-            <div className="flex w-full bg-[#004346] h-[8vh] px-4 text-white items-stretch">
+            <div className="flex w-full bg-[#004346] h-[10vh] px-4 text-white items-stretch">
 
                 {/* Logo */}
                 <div className="flex-1 flex justify-center items-center">
@@ -35,7 +35,9 @@ function Nav() {
 
                 {/* Right side */}
                 <div className="flex-1 flex items-center justify-center">
-                    Am I??
+                    <NavLink to="/contact" className="contact-btn">
+                        <span>Contact Me</span>
+                    </NavLink>
                 </div>
             </div>
         </nav>

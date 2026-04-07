@@ -26,7 +26,7 @@ function Error() {
                 className="mt-8 inline-block rounded-xl bg-slate-900 px-6 py-3 text-white font-semibold hover:bg-slate-700 transition"
             >
                 <span className="group-hover:translate-x-1 transition-transform">
-                    Return to safety
+                    Return to Home
                 </span>
             </Link>
         </section>

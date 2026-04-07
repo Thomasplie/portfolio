@@ -1,12 +1,15 @@
 import HeaderBanner from "../Components/HeaderBanner.jsx";
 import Transition from "../Components/Transition.jsx";
+import Carousel from "../Components/Carousel.jsx";
 function Homepage() {
     return (
         <>
             <HeaderBanner>
             </HeaderBanner>
 
-            <Transition minHeight="min-h-[20px]" bgClass="bg-[#124559]"></Transition>
+            <Transition minHeight="min-h-[500px]" bgClass="bg-[#124559]">
+                <Carousel></Carousel>
+            </Transition>
 
             <h1>TitleCard :D</h1>
             <p>

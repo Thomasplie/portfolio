@@ -98,7 +98,7 @@ function Carousel() {
                                     <div key={cardId} className="flex-[0_0_5em]">
                                         <div onMouseEnter={() => setHoveredCard(cardId)}
                                              onMouseLeave={() => setHoveredCard(null)}
-                                             className={`relative z-0 flex h-[5em] w-[5em] items-center justify-center rounded-[0.2em] bg-cyan-400 text-[3rem] transform-gpu transition-all duration-300
+                                             className={`relative z-0 flex h-[240px] w-[240px] items-center justify-center rounded-[0.2em] bg-cyan-400 text-[3rem] transform-gpu transition-all duration-300
                                              ${isAnotherCardHovered ? "opacity-40" : "opacity-100"}
                                              ${isActive ? "z-30 -translate-y-2 scale-110 shadow-2xl" : ""}`}>
                                             {n}

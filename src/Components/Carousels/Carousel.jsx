@@ -197,7 +197,7 @@ function Carousel() {
             </div>
 
             <div
-                className="mx-auto mt-8 min-h-[140px] max-w-2xl rounded-2xl bg-white/70 p-6 shadow-sm transition-all duration-300">
+                className="absolute left-0 right-0 top-full mt-8 mx-auto min-h-[140px] max-w-2xl rounded-2xl bg-white/70 p-6 shadow-sm transition-all duration-300">
                 {hoveredProject ? (
                     <>
                         <h3 className="text-2xl font-semibold text-black">

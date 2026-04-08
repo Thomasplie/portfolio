@@ -3,13 +3,13 @@ import Transition from "../Components/Transition.jsx";
 import Carousel from "../Components/Carousels/Carousel.jsx";
 function Homepage() {
     return (
-        <>
+        <div className="bg-[#598392]">
             <HeaderBanner>
             </HeaderBanner>
 
             <Transition minHeight="min-h-[500px]" bgClass="bg-[#124559]">
 
-                <div className="py-16">
+                <div className="my-16">
                     <div className="flex">
                         <div className="flex-2">
                             <h2 className="font-bold text-white text-2xl">Some of my work</h2>
@@ -46,25 +46,62 @@ function Homepage() {
                         </div>
                     </div>
 
-                    <Carousel></Carousel>
+                    <div className="relative mb-[250px]">
+                        <Carousel/>
+                    </div>
 
                 </div>
             </Transition>
 
-            <h1>TitleCard :D</h1>
-            <p>
-                Interesting Information of who i am and what my goal is.
-            </p>
+            <section className="w-full py-16">
+                <div className="mx-auto px-96 text-center">
+
+                    <h2 className="text-center text-3xl font-semibold tracking-wide text-black">
+                        TITLE OF SECTION
+                    </h2>
+
+                    <article className="mt-4 text-left text-sm text-black/80 break-words">
+                        Interesting information of who i am and what my goal is
+                    </article>
+
+                    <article className="mt-6 text-left text-sm leading-relaxed text-black break-words">
+                        Interesting information of who i am and what my goal is Interesting information of who i am and
+                        what my goal is Interesting information of who i am and what my goal is Interesting information
+                        of who i am and what my goal is
+                    </article>
+
+                </div>
+            </section>
 
             <Transition minHeight="min-h-[20px]" bgClass="bg-[#124559]" className="text-white">
                 This is not going to be a transition,
                 instead this will be a infinite slider with my projects and my tools that i can use.
             </Transition>
 
-            <p>
-                And here is the optional form, this is probably not gonna make it to the first version gonna be honest
-            </p>
-        </>
+            <section className="w-full py-16">
+                <div className="mx-auto px-96 text-center">
+
+                    <h2 className="text-center text-3xl font-semibold tracking-wide text-black">
+                        Further Information
+                    </h2>
+
+                    <article className="mt-4 text-left text-sm text-black/80 break-words">
+                        Despite me having a lot of fun making this portfolio, and putting in a lot of effort. I am
+                        afraid i will leave this version as it is. I have many plans for further upgrades or should i
+                        say “level ups” for this website and i hope to improve the overall experience of visitors by
+                        making more things dynamic and storing data in an actual database. You can see more information
+                        about this website at -portfolio project link- for more detailed plans.
+                        But for now i want to thank you for your time to explore my portfolio website. I hope you find
+                        what you are looking for!
+                    </article>
+
+                    <h3 className="mt-10 text-center text-2xl font-semibold tracking-wide text-black">
+                        Stay tuned for future updates!
+                    </h3>
+
+                </div>
+            </section>
+        </div>
     )
 }
 

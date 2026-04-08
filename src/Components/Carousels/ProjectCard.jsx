@@ -1,8 +1,11 @@
+import {Link} from "react-router";
+
 function ProjectCard({
                          type = "website",
                          title = "Project Title",
                          description = "Project Description",
                          tags = [],
+                         link = "#",
                          children
                      }) {
     const accentColors = {
@@ -14,17 +17,19 @@ function ProjectCard({
 
     return (
         <>
-            <div
-                className="relative h-[240px] w-[240px] overflow-hidden rounded-2xl border-2 border-teal-400 bg-[url('/src/assets/Projects/Netna.png')] bg-contain bg-no-repeat bg-center">
-                <svg className="absolute left-0 top-0 z-10 h-[90px] w-full" viewBox="0 0 220 90"
-                     preserveAspectRatio="none">
-                    <polygon points="0,0 220,0 220,8 0,48" fill={accentColor}/>
-                </svg>
+            <Link to={link} className="block group">
+                <div
+                    className="relative h-[240px] w-[240px] overflow-hidden rounded-2xl border-2 border-teal-400 bg-[url('/src/assets/Projects/Netna.png')] bg-contain bg-no-repeat bg-center">
+                    <svg className="absolute left-0 top-0 z-10 h-[90px] w-full" viewBox="0 0 220 90"
+                         preserveAspectRatio="none">
+                        <polygon points="0,0 220,0 220,8 0,48" fill={accentColor}/>
+                    </svg>
 
-                <div className="relative z-20 p-4 pt-14">
-                    {children}
+                    <div className="relative z-20 p-4 pt-14">
+                        {children}
+                    </div>
                 </div>
-            </div>
+            </Link>
 
             <h3 className="text-lg font-semibold text-black">{title}</h3>
             <article className="text-sm text-black">{description}</article>

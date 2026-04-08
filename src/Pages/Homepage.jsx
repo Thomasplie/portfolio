@@ -23,7 +23,7 @@ function Homepage() {
 
                                 <div className="flex items-center justify-between">
                                     <p className="font-medium">
-                                        This Color card represents a website project.
+                                        This Color card represents a WEBSITE project.
                                     </p>
 
                                     <svg className="shrink-0 mr-8" width="20" height="20" stroke="#000000"
@@ -34,7 +34,7 @@ function Homepage() {
 
                                 <div className="flex items-center justify-between">
                                     <p className="font-medium">
-                                        This Color card represents a Game project.
+                                        This Color card represents a GAME project.
                                     </p>
 
                                     <svg className="shrink-0 mr-8" width="20" height="20" stroke="#000000"

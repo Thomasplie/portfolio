@@ -7,6 +7,7 @@ function Homepage() {
             <HeaderBanner>
             </HeaderBanner>
 
+
             <Transition minHeight="min-h-[500px]" bgClass="bg-[#124559]">
 
                 <div className="my-16">
@@ -87,11 +88,11 @@ function Homepage() {
 
                     <article className="mt-4 text-left text-sm text-black/80 break-words">
                         Despite me having a lot of fun making this portfolio, and putting in a lot of effort. I am
-                        afraid i will leave this version as it is. I have many plans for further upgrades or should i
-                        say “level ups” for this website and i hope to improve the overall experience of visitors by
+                        afraid I will leave this version as it is. I have many plans for further upgrades or should I
+                        say “level ups” for this website and I hope to improve the overall experience of visitors by
                         making more things dynamic and storing data in an actual database. You can see more information
                         about this website at -portfolio project link- for more detailed plans.
-                        But for now i want to thank you for your time to explore my portfolio website. I hope you find
+                        But for now I want to thank you for your time to explore my portfolio website. I hope you find
                         what you are looking for!
                     </article>
 

@@ -24,7 +24,9 @@ function HeaderBanner() {
                 </div>
             </div>
 
-            <BlockEdgeDecoration color="#09BC8A" position="bottom"/>
+            <div className="relative">
+                <BlockEdgeDecoration color="#124559" position="bottom"/>
+            </div>
         </section>
     );
 }

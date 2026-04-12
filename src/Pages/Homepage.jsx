@@ -1,12 +1,49 @@
 import HeaderBanner from "../Components/HeaderBanner.jsx";
 import Transition from "../Components/Transition.jsx";
 import Carousel from "../Components/Carousels/Carousel.jsx";
+import BlockEdgeDecoration from "../Components/BlockEdgeDecoration.jsx";
 function Homepage() {
     return (
         <div className="bg-[#598392]">
             <HeaderBanner>
             </HeaderBanner>
 
+
+            <section className="relative w-full py-48">
+
+                <BlockEdgeDecoration color="#124559" position="top" flipX="true" height="clamp(70px, 13vw, 200px)"/>
+
+                <div className="mx-auto px-96 text-center">
+
+                    <h2 className="text-center text-3xl font-semibold tracking-wide text-black">
+                        Hi there, great to see you!
+                    </h2>
+
+                    <article className="mt-4 text-left italic font-medium break-words">
+                        I build interactive digital experiences. From creative web apps to game design projects.
+                    </article>
+
+                    <article className="mt-6 text-left leading-relaxed text-black break-words">
+                        Since you're here, you're probably curious about what I can actually do. <br/>
+
+                        My focus lies completely to creating the best possible experience for the User, thats the simple
+                        part of it. Whether it's a website
+                        or a game in the making I will always look at my work with a critical perspective and if I don't
+                        think it's good enough I will have to go back to the
+                        drawing board. Now that does sound very intense, but there's a lot of flexability that goes into
+                        this way of thinking. <br/>
+                    </article>
+
+                    <article className="mt-6 text-left leading-relaxed text-black break-words">
+                        But more about this on the About me page. Take a look around, at my work, about me, or to see
+                        where I am heading next. See ya!
+                    </article>
+
+                </div>
+
+                <BlockEdgeDecoration color="#124559" position="bottom" flipX="true" height="clamp(70px, 12vw, 200px)"/>
+
+            </section>
 
             <Transition minHeight="min-h-[500px]" bgClass="bg-[#124559]">
 
@@ -54,39 +91,17 @@ function Homepage() {
                 </div>
             </Transition>
 
-            <section className="w-full py-16">
-                <div className="mx-auto px-96 text-center">
+            <section className="relative w-full py-40">
 
-                    <h2 className="text-center text-3xl font-semibold tracking-wide text-black">
-                        TITLE OF SECTION
-                    </h2>
+                <BlockEdgeDecoration color="#124559" position="top" flipX="true" height="clamp(70px, 13vw, 200px)"/>
 
-                    <article className="mt-4 text-left text-sm text-black/80 break-words">
-                        Interesting information of who i am and what my goal is
-                    </article>
-
-                    <article className="mt-6 text-left text-sm leading-relaxed text-black break-words">
-                        Interesting information of who i am and what my goal is Interesting information of who i am and
-                        what my goal is Interesting information of who i am and what my goal is Interesting information
-                        of who i am and what my goal is
-                    </article>
-
-                </div>
-            </section>
-
-            <Transition minHeight="min-h-[20px]" bgClass="bg-[#124559]" className="text-white">
-                This is not going to be a transition,
-                instead this will be a infinite slider with my projects and my tools that i can use.
-            </Transition>
-
-            <section className="w-full py-16">
                 <div className="mx-auto px-96 text-center">
 
                     <h2 className="text-center text-3xl font-semibold tracking-wide text-black">
                         Further Information
                     </h2>
 
-                    <article className="mt-4 text-left text-sm text-black/80 break-words">
+                    <article className="mt-4 text-left text-black/80 break-words">
                         Despite me having a lot of fun making this portfolio, and putting in a lot of effort. I am
                         afraid I will leave this version as it is. I have many plans for further upgrades or should I
                         say “level ups” for this website and I hope to improve the overall experience of visitors by
@@ -102,6 +117,7 @@ function Homepage() {
 
                 </div>
             </section>
+
         </div>
     )
 }

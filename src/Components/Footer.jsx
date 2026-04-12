@@ -7,7 +7,7 @@ function Footer() {
     ${isActive ? "text-[#09BC8A] font-bold border-[#F17F29]" : "text-white underline border-transparent hover:text-[#09BC8A] hover:border-[#F17F29]"}`;
 
     return (
-        <footer className="bg-[#004346] pt-8 py-4 flex flex-col">
+        <footer className="bg-[#004346] pt-8 flex flex-col">
             <div className="flex justify-evenly items-center">
                 <div className="flex flex-col">
                     <ul className="list-disc space-y-4 pl-4 marker:text-[#09BC8A] text-white text text-[1.25rem]">

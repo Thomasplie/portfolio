@@ -4,7 +4,7 @@ import Carousel from "../Components/Carousels/Carousel.jsx";
 import BlockEdgeDecoration from "../Components/BlockEdgeDecoration.jsx";
 function Homepage() {
     return (
-        <div className="bg-[#598392]">
+        <div className="bg-[#0e2d33]">
             <HeaderBanner>
             </HeaderBanner>
 
@@ -15,15 +15,15 @@ function Homepage() {
 
                 <div className="mx-auto px-96 text-center">
 
-                    <h2 className="text-center text-3xl font-semibold tracking-wide text-black">
+                    <h2 className="text-center text-3xl font-semibold tracking-wide text-[#e2f0ee]">
                         Hi there, great to see you!
                     </h2>
 
-                    <article className="mt-4 text-left italic font-medium break-words">
+                    <article className="mt-4 text-left italic font-medium break-words text-[#e2f0ee]">
                         I build interactive digital experiences. From creative web apps to game design projects.
                     </article>
 
-                    <article className="mt-6 text-left leading-relaxed text-black break-words">
+                    <article className="mt-6 text-left leading-relaxed text-[#e2f0ee] break-words">
                         Since you're here, you're probably curious about what I can actually do. <br/>
 
                         My focus lies completely to creating the best possible experience for the User, thats the simple
@@ -34,7 +34,7 @@ function Homepage() {
                         this way of thinking. <br/>
                     </article>
 
-                    <article className="mt-6 text-left leading-relaxed text-black break-words">
+                    <article className="mt-6 text-left leading-relaxed text-[#e2f0ee] break-words">
                         But more about this on the About me page. Take a look around, at my work, about me, or to see
                         where I am heading next. See ya!
                     </article>
@@ -45,7 +45,35 @@ function Homepage() {
 
             </section>
 
-            <Transition minHeight="min-h-[500px]" bgClass="bg-[#124559]">
+            <Transition
+                minHeight="min-h-[500px]"
+                bgClass="bg-[#071a1e]"
+                contentClassName="!max-w-[1400px]"
+                topSvg={
+                    <svg viewBox="0 0 1 80" preserveAspectRatio="none" className="block w-full"
+                         style={{height: "80px"}}>
+                        <defs>
+                            <linearGradient id="fadeIn" x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="0%" stopColor="#0e2d33"/>
+                                <stop offset="100%" stopColor="#071a1e"/>
+                            </linearGradient>
+                        </defs>
+                        <rect width="1" height="80" fill="url(#fadeIn)"/>
+                    </svg>
+                }
+                bottomSvg={
+                    <svg viewBox="0 0 1 80" preserveAspectRatio="none" className="block w-full"
+                         style={{height: "80px"}}>
+                        <defs>
+                            <linearGradient id="fadeOut" x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="0%" stopColor="#071a1e"/>
+                                <stop offset="100%" stopColor="#0e2d33"/>
+                            </linearGradient>
+                        </defs>
+                        <rect width="1" height="80" fill="url(#fadeOut)"/>
+                    </svg>
+                }
+            >
 
                 <div className="my-16">
                     <div className="flex">
@@ -97,21 +125,21 @@ function Homepage() {
 
                 <div className="mx-auto px-96 text-center">
 
-                    <h2 className="text-center text-3xl font-semibold tracking-wide text-black">
+                    <h2 className="text-center text-3xl font-semibold tracking-wide text-[#e2f0ee]">
                         Further Information
                     </h2>
 
-                    <article className="mt-4 text-left text-black/80 break-words">
+                    <article className="mt-4 text-left text-[#e2f0ee]/80 wrap-break-word">
                         Despite me having a lot of fun making this portfolio, and putting in a lot of effort. I am
                         afraid I will leave this version as it is. I have many plans for further upgrades or should I
-                        say “level ups” for this website and I hope to improve the overall experience of visitors by
+                        say "level ups" for this website and I hope to improve the overall experience of visitors by
                         making more things dynamic and storing data in an actual database. You can see more information
                         about this website at -portfolio project link- for more detailed plans.
                         But for now I want to thank you for your time to explore my portfolio website. I hope you find
                         what you are looking for!
                     </article>
 
-                    <h3 className="mt-10 text-center text-2xl font-semibold tracking-wide text-black">
+                    <h3 className="mt-10 text-center text-2xl font-semibold tracking-wide text-[#e2f0ee]">
                         Stay tuned for future updates!
                     </h3>
 

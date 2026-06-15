@@ -4,7 +4,7 @@ import {NavLink} from "react-router";
 function Footer() {
 
     const navLinkClass = ({isActive}) => `h-full inline-flex items-center px-4 border-b-4 transition-colors duration-200 
-    ${isActive ? "text-[#09BC8A] font-bold border-[#F17F29]" : "text-white underline border-transparent hover:text-[#09BC8A] hover:border-[#F17F29]"}`;
+    ${isActive ? "text-[#09BC8A] font-bold border-[#F17F29]" : "border-transparent hover:text-[#09BC8A] hover:border-[#F17F29]"}`;
 
     return (
         <footer className="bg-[#004346] pt-8 flex flex-col">

@@ -1,0 +1,44 @@
+const projects = [
+    {
+        id: 1,
+        type: "game",
+        title: "Netna",
+        description: "A modern website project focused on visual clarity, responsiveness, and a polished user experience.",
+        tags: ["React", "Tailwind", "UI"],
+        link: "/future-plans",
+        github: null,
+        image: "/images/Netna.png",
+    },
+    {
+        id: 2,
+        type: "website",
+        title: "Progression Assesment",
+        description: "A portfolio concept that combines branding, motion, and structured content presentation.",
+        tags: ["Portfolio", "Design", "Frontend"],
+        link: "/projects/portfolio-redesign",
+        github: null,
+        image: "/images/Signatuur2.png",
+    },
+    {
+        id: 3,
+        type: "website",
+        title: "Wybel Class Selector",
+        description: "A treadmill workout app with real-time metrics, animation updates, and a strong themed presentation.",
+        tags: ["Fitness", "React", "Realtime"],
+        link: "/projects/workout-tracker",
+        github: null,
+        image: "/images/Wybot.png",
+    },
+    {
+        id: 4,
+        type: "Website",
+        title: "EasyFit",
+        description: "A creative remix concept exploring redstone systems, maze logic, and playful interaction design.",
+        tags: ["Minecraft", "Redstone", "Creative"],
+        link: "/projects/minecraft-remix",
+        github: null,
+        image: "/images/Easyfit_LOGO.png",
+    },
+];
+
+export default projects;

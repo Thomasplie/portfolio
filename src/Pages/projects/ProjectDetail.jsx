@@ -1,6 +1,6 @@
-import ProjectCard from "../Components/Carousels/ProjectCard.jsx";
+import ProjectCard from "../../Components/Carousels/ProjectCard.jsx";
 
-function Projects() {
+function ProjectDetail() {
     return (
         <>
             <ProjectCard title={"Netna"} tags={["Html/css", "PHP", "JS"]} link="/future-plans">
@@ -10,4 +10,4 @@ function Projects() {
     )
 }
 
-export default Projects
+export default ProjectDetail

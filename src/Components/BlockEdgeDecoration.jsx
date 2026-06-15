@@ -22,7 +22,7 @@ function BlockEdgeDecoration({
             <svg viewBox="0 0 1240 140" preserveAspectRatio="none" className={`block w-full h-full ${transforms}`}>
 
                 {/* Default stroke */}
-                <rect x="0" y="120" width="1240" height="20" fill="#ffffff"/>
+                <rect x="0" y="120" width="1240" height="20" fill={color}/>
 
                 {/* DO NOT TOUCH WIDTH FOR STYLING, ONLY HEIGHTS. */}
                 <rect x="0" y="25" width="98" height="115" fill={color}/>

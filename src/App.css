@@ -99,40 +99,6 @@
     }
 }
 
-/* End of button styling */
-
-/*.carousel{*/
-/*    margin: 100px auto;*/
-/*    width: 90%;*/
-/*    border: 5px solid red;*/
-/*    display: flex;*/
-/*    overflow-x: auto;*/
-/*}*/
-
-/*.carousel::-webkit-scrollbar {*/
-/*    display:none;*/
-/*}*/
-
-/*.group{*/
-/*    display: flex;*/
-/*    align-items: center;*/
-/*    justify-content: center;*/
-/*    gap: 1em;*/
-/*    animation: carousel 6s infinite linear;*/
-/*    padding-right: 1em;*/
-/*}*/
-
-/*.card{*/
-/*    flex: 0 0 5em;*/
-/*    height: 5em;*/
-/*    padding: 1em;*/
-/*    background: aqua;*/
-/*    font-size: 3rem;*/
-/*    border-radius: .2em;*/
-/*    text-align: center;*/
-/*    align-content: center*/
-/*}*/
-
 @keyframes carousel {
     from {
         transform: translateX(0);
@@ -154,4 +120,28 @@
 
 .carousel-viewport::-webkit-scrollbar {
     display: none;
+}
+
+/* Infinite scroll track */
+.carousel-track {
+    display: flex;
+    width: max-content;
+    will-change: transform;
+}
+
+.carousel-group {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* Uses the CSS variable so the endpoint adjusts to however many copies are rendered */
+@keyframes carousel-scroll {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(var(--carousel-translate));
+    }
 }

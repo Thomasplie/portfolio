@@ -1,178 +1,137 @@
-import {useEffect, useMemo, useRef, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import ProjectCard from "./ProjectCard";
+import projects from "../../data/projects.js";
 
-const projects = [
-    {
-        id: 1,
-        type: "website",
-        title: "Netna",
-        description: "A modern website project focused on visual clarity, responsiveness, and a polished user experience.",
-        tags: ["React", "Tailwind", "UI"],
-        link: "/future-plans",
-        image: "/src/assets/Projects/Netna.png",
-    },
-    {
-        id: 2,
-        type: "game",
-        title: "Esports Guessing Game",
-        description: "An interactive game project built around esports knowledge, score tracking, and engaging UI feedback.",
-        tags: ["Game", "JavaScript", "UX"],
-        link: "/projects/esports-game",
-        image: "/src/assets/Projects/Netna.png",
-    },
-    {
-        id: 3,
-        type: "website",
-        title: "Portfolio Redesign",
-        description: "A portfolio concept that combines branding, motion, and structured content presentation.",
-        tags: ["Portfolio", "Design", "Frontend"],
-        link: "/projects/portfolio-redesign",
-        image: "/src/assets/Projects/Netna.png",
-    },
-    {
-        id: 4,
-        type: "website",
-        title: "Workout Tracker",
-        description: "A treadmill workout app with real-time metrics, animation updates, and a strong themed presentation.",
-        tags: ["Fitness", "React", "Realtime"],
-        link: "/projects/workout-tracker",
-        image: "/src/assets/Projects/Netna.png",
-    },
-    {
-        id: 5,
-        type: "game",
-        title: "Minecraft Remix",
-        description: "A creative remix concept exploring redstone systems, maze logic, and playful interaction design.",
-        tags: ["Minecraft", "Redstone", "Creative"],
-        link: "/projects/minecraft-remix",
-        image: "/src/assets/Projects/Netna.png",
-    },
-    {
-        id: 6,
-        type: "website",
-        title: "Sponsorship Analysis",
-        description: "A research-focused project presenting partnership quality through structure, clarity, and visual hierarchy.",
-        tags: ["Research", "Analysis", "Content"],
-        link: "/projects/sponsorship-analysis",
-        image: "/src/assets/Projects/Netna.png",
-    },
-    {
-        id: 7,
-        type: "game",
-        title: "Pokédex App",
-        description: "A Pokédex interface using APIs and dynamic rendering to present Pokémon data in a clean way.",
-        tags: ["API", "JavaScript", "Pokédex"],
-        link: "/projects/pokedex",
-        image: "/src/assets/Projects/Netna.png",
-    },
-];
+const BASE_SPEED = 80; // px per second at full speed
+const EASE = 0.06; // how quickly speed changes (lower = more gradual)
 
 function Carousel() {
-    const trackRef = useRef(null);
-    const groupRef = useRef(null);
-    const animationRef = useRef(null);
-    const lastTimeRef = useRef(0);
-    const offsetRef = useRef(0);
-    const currentSpeedRef = useRef(0);
-    const targetSpeedRef = useRef(0);
-    const groupWidthRef = useRef(0);
-
     const [isPlaying, setIsPlaying] = useState(true);
     const [hoveredCardId, setHoveredCardId] = useState(null);
+    const [copyCount, setCopyCount] = useState(2);
 
-    const baseSpeed = 80;
-    const ease = 0.08;
+    const viewportRef = useRef(null);
+    const groupRef = useRef(null);
+    const trackRef = useRef(null);
 
-    const duplicatedProjects = useMemo(() => [...projects, ...projects], []);
+    // Animation state — all in refs so the rAF loop never causes re-renders
+    // Render stutter issue solution
+    const offsetRef = useRef(0);      // current px offset
+    const speedRef = useRef(0);      // current px/s (eased)
+    const targetSpeedRef = useRef(BASE_SPEED); // what we're easing toward
+    const groupWidthRef = useRef(0);
+    const lastTimeRef = useRef(null);
+    const rafRef = useRef(null);
+    const modeRef = useRef("js");   // "js" = we control transform, "css" = CSS animation controls it
 
-    const hoveredProject =
-        projects.find((project) => project.id === hoveredCardId) ?? null;
+    const hoveredProject = projects.find((p) => p.id === hoveredCardId) ?? null;
 
+    // ── Copy count: enough to always fill the viewport with no gaps ──────────
     useEffect(() => {
-        const updateWidth = () => {
-            if (groupRef.current) {
-                groupWidthRef.current = groupRef.current.offsetWidth;
-            }
+        const calculate = () => {
+            if (!groupRef.current || !viewportRef.current) return;
+            const gw = groupRef.current.offsetWidth;
+            const vw = viewportRef.current.offsetWidth;
+            if (gw === 0) return;
+            groupWidthRef.current = gw;
+            const needed = Math.ceil((vw * 2) / gw) + 1;
+            setCopyCount(Math.max(2, needed));
         };
-
-        updateWidth();
-        window.addEventListener("resize", updateWidth);
-
+        const raf = requestAnimationFrame(calculate);
+        window.addEventListener("resize", calculate);
         return () => {
-            window.removeEventListener("resize", updateWidth);
+            cancelAnimationFrame(raf);
+            window.removeEventListener("resize", calculate);
         };
     }, []);
 
+    // ── Main animation loop ───────────────────────────────────────────────────
     useEffect(() => {
-        targetSpeedRef.current = isPlaying && hoveredCardId === null ? baseSpeed : 0;
-    }, [isPlaying, hoveredCardId]);
-
-    useEffect(() => {
-        const animate = (time) => {
-            if (!lastTimeRef.current) {
-                lastTimeRef.current = time;
-            }
-
-            const deltaTime = (time - lastTimeRef.current) / 1000;
+        const tick = (time) => {
+            if (!lastTimeRef.current) lastTimeRef.current = time;
+            const dt = Math.min((time - lastTimeRef.current) / 1000, 0.05); // cap dt to avoid jumps after tab switch
             lastTimeRef.current = time;
 
-            currentSpeedRef.current +=
-                (targetSpeedRef.current - currentSpeedRef.current) * ease;
+            // Ease speed toward target
+            speedRef.current += (targetSpeedRef.current - speedRef.current) * EASE;
 
-            offsetRef.current += currentSpeedRef.current * deltaTime;
+            const gw = groupWidthRef.current;
 
-            const groupWidth = groupWidthRef.current;
+            if (gw > 0 && trackRef.current) {
+                offsetRef.current += speedRef.current * dt;
 
-            if (groupWidth > 0) {
-                offsetRef.current = offsetRef.current % groupWidth;
+                // Seamless loop — subtract one group width when we've scrolled that far
+                if (offsetRef.current >= gw) offsetRef.current -= gw;
 
-                if (trackRef.current) {
-                    trackRef.current.style.transform = `translateX(-${offsetRef.current}px)`;
-                }
+                trackRef.current.style.transform = `translateX(-${offsetRef.current}px)`;
             }
 
-            animationRef.current = requestAnimationFrame(animate);
+            rafRef.current = requestAnimationFrame(tick);
         };
 
-        animationRef.current = requestAnimationFrame(animate);
-
-        return () => {
-            cancelAnimationFrame(animationRef.current);
-        };
+        rafRef.current = requestAnimationFrame(tick);
+        return () => cancelAnimationFrame(rafRef.current);
     }, []);
+
+    // ── React to pause button and hover state ─────────────────────────────────
+    useEffect(() => {
+        // Pause button → instant stop, no easing
+        if (!isPlaying) {
+            targetSpeedRef.current = 0;
+            speedRef.current = 0;
+            return;
+        }
+        // Hover → ease to stop, ease back to full speed
+        targetSpeedRef.current = hoveredCardId !== null ? 0 : BASE_SPEED;
+    }, [isPlaying, hoveredCardId]);
 
     return (
         <section className="py-6">
+
+            {/* ── Play / Pause button ── */}
             <div className="mb-4 flex justify-center">
                 <button
                     type="button"
                     onClick={() => setIsPlaying((prev) => !prev)}
-                    className="rounded-md bg-cyan-400 px-4 py-2 font-semibold text-black transition-transform duration-200 hover:scale-105"
+                    className="rounded-md bg-[#09BC8A] px-4 py-2 font-semibold text-black transition-transform duration-200 hover:scale-105"
                 >
                     {isPlaying ? "Pause Animation" : "Play Animation"}
                 </button>
             </div>
 
-            <div className="carousel-viewport py-4">
+            {/* ── Carousel viewport ── */}
+            <div
+                ref={viewportRef}
+                className="carousel-viewport py-4"
+                style={{
+                    maskImage: "linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)",
+                    WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)",
+                }}
+            >
+                {/*
+                    JS controls transform directly via offsetRef.
+                    No CSS animation needed — the rAF loop handles everything.
+                */}
                 <div
                     ref={trackRef}
-                    className="flex w-max gap-4 will-change-transform"
+                    className="carousel-track"
                 >
-                    {[0, 1].map((groupIndex) => (
+                    {Array.from({length: copyCount}, (_, groupIndex) => (
                         <div
                             key={groupIndex}
                             ref={groupIndex === 0 ? groupRef : null}
-                            className="flex shrink-0 items-center gap-4"
-                            aria-hidden={groupIndex === 1}
+                            className="carousel-group"
+                            aria-hidden={groupIndex > 0}
                         >
                             {projects.map((project) => {
-                                const uniqueRenderId = `${groupIndex}-${project.id}`;
                                 const isActive = hoveredCardId === project.id;
-                                const isAnotherCardHovered =
-                                    hoveredCardId !== null && hoveredCardId !== project.id;
+                                const isAnotherHovered = hoveredCardId !== null && !isActive;
 
                                 return (
-                                    <div key={uniqueRenderId} className="flex-[0_0_240px]">
+                                    <div
+                                        key={`${groupIndex}-${project.id}`}
+                                        className="flex-[0_0_240px]"
+                                    >
                                         <ProjectCard
                                             type={project.type}
                                             title={project.title}
@@ -184,7 +143,7 @@ function Carousel() {
                                             onMouseLeave={() => setHoveredCardId(null)}
                                             className={`
                                                 transform-gpu transition-all duration-300
-                                                ${isAnotherCardHovered ? "opacity-40" : "opacity-100"}
+                                                ${isAnotherHovered ? "opacity-40" : "opacity-100"}
                                                 ${isActive ? "z-30 -translate-y-2 scale-110" : ""}
                                             `}
                                         />
@@ -196,23 +155,22 @@ function Carousel() {
                 </div>
             </div>
 
+            {/* ── Hovered project info card ── */}
             <div
-                className="absolute left-0 right-0 top-full mt-8 mx-auto min-h-[140px] max-w-2xl rounded-2xl bg-white/70 p-6 shadow-sm transition-all duration-300">
+                className="absolute left-0 right-0 top-full mt-8 mx-auto min-h-[140px] max-w-2xl rounded-2xl bg-[#0e2d33]/90 p-6 shadow-sm transition-all duration-300">
                 {hoveredProject ? (
                     <>
-                        <h3 className="text-2xl font-semibold text-black">
+                        <h3 className="text-2xl font-semibold text-[#e2f0ee]">
                             {hoveredProject.title}
                         </h3>
-
-                        <p className="mt-2 text-sm leading-6 text-black">
+                        <p className="mt-2 text-sm leading-6 text-[#e2f0ee]">
                             {hoveredProject.description}
                         </p>
-
                         <div className="mt-4 flex flex-wrap gap-2">
                             {hoveredProject.tags.map((tag) => (
                                 <span
                                     key={tag}
-                                    className="min-w-12 rounded-full bg-emerald-400 px-4 py-1 text-center text-sm font-medium text-black"
+                                    className="min-w-12 rounded-full bg-[#09BC8A] px-4 py-1 text-center text-sm font-medium text-black"
                                 >
                                     {tag}
                                 </span>
@@ -220,11 +178,12 @@ function Carousel() {
                         </div>
                     </>
                 ) : (
-                    <div className="flex h-full items-center justify-center text-sm text-black/70">
+                    <div className="flex h-full items-center justify-center text-sm text-[#e2f0ee]/70">
                         Hover over a project card to view its details.
                     </div>
                 )}
             </div>
+
         </section>
     );
 }

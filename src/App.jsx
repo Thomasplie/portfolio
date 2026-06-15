@@ -3,7 +3,8 @@ import Layout from "./Components/Layout.jsx";
 import Homepage from "./Pages/Homepage.jsx";
 import About from "./Pages/About.jsx";
 import Future from "./Pages/Future.jsx";
-import Projects from "./Pages/Projects.jsx";
+import ProjectsPage from "./Pages/projects/ProjectsPage.jsx";
+import ProjectDetail from "./Pages/projects/ProjectDetail.jsx";
 import Error from "./Pages/Error.jsx";
 
 const router = createBrowserRouter([
@@ -24,7 +25,11 @@ const router = createBrowserRouter([
             },
             {
                 path: "/my-projects",
-                element: <Projects/>
+                element: <ProjectsPage/>
+            },
+            {
+                path: "/my-projects/:slug",
+                element: <ProjectDetail/>
             },
             {
                 path: "/not-found",

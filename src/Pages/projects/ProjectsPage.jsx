@@ -65,20 +65,20 @@ function ProjectHole({image, title}) {
                 />
             </svg>
 
-            {/* Canvas lives clipped inside the same shape using clip-path on a child */}
+            {/* Canvas + image clipped with % values so it scales at any size */}
             <div
                 className="absolute inset-0 overflow-hidden"
                 style={{
                     clipPath: `polygon(
-                        0px 24px,   15px 24px,  15px 0px,   46px 0px,   46px 15px,
-                        106px 15px, 106px 0px,  167px 0px,  167px 24px,
-                        213px 24px, 213px 0px,  273px 0px,  273px 15px,
-                        334px 15px, 334px 0px,  365px 0px,  365px 24px, 380px 24px,
-                        380px 276px, 365px 276px, 365px 300px, 334px 300px, 334px 285px,
-                        273px 285px, 273px 300px, 213px 300px, 213px 276px,
-                        167px 276px, 167px 300px, 106px 300px, 106px 285px,
-                        46px 285px,  46px 300px,  15px 300px,  15px 276px,
-                        0px 276px
+                        0% 8%,    3.9% 8%,  3.9% 0%,  12.1% 0%,  12.1% 5%,
+                        27.9% 5%, 27.9% 0%, 43.9% 0%, 43.9% 8%,
+                        56.1% 8%, 56.1% 0%, 71.9% 0%, 71.9% 5%,
+                        87.9% 5%, 87.9% 0%, 96.1% 0%, 96.1% 8%, 100% 8%,
+                        100% 92%, 96.1% 92%, 96.1% 100%, 87.9% 100%, 87.9% 95%,
+                        71.9% 95%, 71.9% 100%, 56.1% 100%, 56.1% 92%,
+                        43.9% 92%, 43.9% 100%, 27.9% 100%, 27.9% 95%,
+                        12.1% 95%, 12.1% 100%, 3.9% 100%, 3.9% 92%,
+                        0% 92%
                     )`,
                     zIndex: 1,
                 }}
@@ -111,7 +111,7 @@ function ProjectRow({project, index}) {
     return (
         <div className="py-16 px-6">
             <Link
-                to={project.link ?? "#"}
+                to={`/my-projects/${project.slug}`}
                 className={`group flex items-center gap-16 ${isEven ? "flex-row" : "flex-row-reverse"}`}
                 aria-label={`View ${project.title} project`}
             >
@@ -179,6 +179,7 @@ function ProjectsPage() {
 
             {/* ── Hero — reuse HeaderBanner with overrideText ── */}
             <HeaderBanner
+                images={projects.map((p) => p.image)}
                 overrideText={
                     <div>
                         <p className="mb-4 text-sm md:text-base font-medium text-[#09BC8A]">My Work</p>

@@ -1,6 +1,7 @@
 const projects = [
     {
         id: 1,
+        slug: "netna",
         type: "game",
         title: "Netna",
         description: "A modern website project focused on visual clarity, responsiveness, and a polished user experience.",

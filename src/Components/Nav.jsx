@@ -35,9 +35,10 @@ function Nav() {
 
                 {/* Right side */}
                 <div className="flex-1 flex items-center justify-center">
-                    <NavLink to="/contact" className="contact-btn">
+                    <a href="mailto:thomasdekorte77@gmail.com?subject=Interesse in samenwerking!"
+                       className="contact-btn">
                         <span>Contact Me</span>
-                    </NavLink>
+                    </a>
                 </div>
             </div>
         </nav>

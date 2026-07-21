@@ -1,3 +1,5 @@
+const base = import.meta.env.BASE_URL;
+
 const projects = [
     {
         id: 1,
@@ -8,8 +10,9 @@ const projects = [
             "so that they will be calmed down!",
         tags: ["Excalibur", "Javascript"],
         link: "/my-projects/netna",
-        github: "https://github.com/dtb354/Team6-Project-Net/tree/main/src/js",
-        image: "/images/Netna.png",
+        github: "https://github.com/Thomasplie/Team6-Project-Net",
+        demoUrl: "https://dtb354.github.io/Team6-Project-Net/",
+        image: `${base}images/Netna.png`,
         role: "Player Designer",
         teamSize: 5,
         longDescription: [
@@ -19,14 +22,15 @@ const projects = [
         contribution: [
             "I created all the sprites for the player, working with spritesheets and figuring out pixel art for the first time. Getting everything as smooth as possible was a great challenge.",
             "I also did supporting work on other sprites and code — adding the shiny versions of the monsters, and building a small promotional website in HTML and CSS, which was one of my very first web projects ever.",
+            "If you wish to try it out, Controls are wasd to move and space to attack. Press enter to start! (only controller inputs are explained in-game)"
         ],
         screenshots: [
             {
-                src: "/images/projects/netna-screen1.png",
+                src: `${base}images/projects/netna-screen1.png`,
                 caption: "The player sprite sheet I created — 8 directional movement animations."
             },
             {
-                src: "/images/projects/netna-screen2.png",
+                src: `${base}images/projects/netna-screen2.png`,
                 caption: "The shiny monster variants I added as a bonus feature."
             },
         ],
@@ -40,8 +44,9 @@ const projects = [
             "a library outside of my comfort zone.",
         tags: ["Design", "Frontend", "Library"],
         link: "/my-projects/progression-assessment",
-        github: null,
-        image: "/images/Signatuur2.png",
+        github: "https://github.com/Thomasplie/signatuur",
+        demoUrl: "https://thomasplie.github.io/signatuur/",
+        image: `${base}images/Signatuur2.png`,
         role: "Frontend Developer",
         teamSize: 1,
         longDescription: [
@@ -61,8 +66,9 @@ const projects = [
         description: "An AI chatbot that has answers for all your Wynncraft class questions.",
         tags: ["AI", "LangChain", "Wynncraft"],
         link: "/my-projects/wybel-class-selector",
-        github: null,
-        image: "/images/Wybot.png",
+        github: "https://github.com/Thomasplie/prg8Wynnbot",
+        demoUrl: null,
+        image: `${base}images/Wybot.png`,
         role: "Full-stack Developer",
         teamSize: 1,
         longDescription: [
@@ -73,8 +79,8 @@ const projects = [
             "Everything — from the frontend to getting the AI to work with LangChain. This was my own personal project, built entirely solo.",
         ],
         screenshots: [
-            "/images/projects/netna-screen1.png",
-            "/images/projects/netna-screen2.png",
+            {src: `${base}images/projects/wybel-screen1.png`, caption: "Screenshot 1"},
+            {src: `${base}images/projects/wybel-screen2.png`, caption: "Screenshot 2"},
         ],
     },
     {
@@ -86,12 +92,13 @@ const projects = [
             "This treadmill is specifically designed for people with a mild intellectual disability.",
         tags: ["UI", "UX", "Frontend"],
         link: "/my-projects/easyfit",
-        github: null,
-        image: "/images/Easyfit_LOGO.png",
+        github: "https://github.com/Thomasplie/Easyfit",
+        demoUrl: null,
+        image: `${base}images/Easyfit_LOGO.png`,
         role: "Frontend Lead",
         teamSize: 3,
         longDescription: [
-            "EasyFit is a treadmill workout app with real-time metrics. The layout of the interface is specifically designed for people with a mild intellectual disability — and so is the language used throughout.",
+            "EasyFit is a treadmill workout app with real-time metrics. The layout of the interface is specifically designed for people with a mild intellectual disability, and so is the language used throughout.",
             "The treadmill supports different workout modes so that users can enjoy a wider variety of sessions, all within an interface that is clear, calm and confidence-inspiring.",
         ],
         contribution: [
@@ -99,8 +106,8 @@ const projects = [
             "Understanding the user in this case was everything — the design had to be functional, friendly and accessible in a way that went far beyond standard UX thinking.",
         ],
         screenshots: [
-            "/images/projects/easyfit-screen1.png",
-            "/images/projects/easyfit-screen2.png",
+            {src: `${base}images/projects/easyfit-screen1.png`, caption: "Screenshot 1"},
+            {src: `${base}images/projects/easyfit-screen2.png`, caption: "Screenshot 2"},
         ],
     },
 ];

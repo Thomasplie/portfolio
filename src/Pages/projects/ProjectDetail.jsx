@@ -143,18 +143,30 @@ function ProjectDetail() {
                             </div>
                         )}
 
-                        {/* GitHub link */}
-                        {project.github && (
-                            <a
-                                href={project.github}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="inline-flex items-center gap-2 text-sm mt-4 hover:underline"
-                                style={{color: accentColor}}
-                            >
-                                View on GitHub →
-                            </a>
-                        )}
+                        <div className="flex flex-wrap gap-6 mt-4">
+                            {project.github && (
+                                <a
+                                    href={project.github}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="inline-flex items-center gap-2 text-sm hover:underline"
+                                    style={{color: accentColor}}
+                                >
+                                    View on GitHub →
+                                </a>
+                            )}
+                            {project.demoUrl && (
+                                <a
+                                    href={project.demoUrl}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="inline-flex items-center gap-2 text-sm hover:underline"
+                                    style={{color: accentColor}}
+                                >
+                                    Try it out yourself! →
+                                </a>
+                            )}
+                        </div>
                     </div>
 
                     {/* ── Right: main project image ── */}
@@ -165,7 +177,6 @@ function ProjectDetail() {
 
                 </div>
 
-                {/* ── Back link for projects without screenshots ── */}
                 {(!project.screenshots || project.screenshots.length === 0) && (
                     <div className="flex justify-center mt-16">
                         <Link to="/my-projects" className="text-[#09BC8A] hover:underline text-base font-medium">
@@ -218,7 +229,6 @@ function ProjectDetail() {
                         </div>
                     </div>
 
-                    {/* Back link  */}
                     <div className="flex justify-center mt-16">
                         <Link to="/my-projects" className="text-[#09BC8A] hover:underline text-base font-medium">
                             ← Back to all projects
@@ -234,8 +244,6 @@ function ProjectDetail() {
 
                 </section>
             )}
-
-
 
         </div>
     );

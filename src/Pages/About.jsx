@@ -21,7 +21,7 @@ function About() {
                             Hi, I'm Thomas.
                         </h1>
                         <p className="mt-4 text-lg md:text-2xl text-white/70">
-                            Developer. Designer. Builder.
+                            Developer. Designer. Gamer.
                         </p>
                     </div>
                 }
@@ -42,11 +42,16 @@ function About() {
                     {/* Left — text */}
                     <div className="flex-1">
                         <h2 className="text-2xl font-semibold text-[#e2f0ee] mb-4">
-                            Little introduction
+                            Hey there 👋
                         </h2>
                         <p className="text-[#e2f0ee]/70 leading-relaxed mb-4">
-                            I build interactive digital experiences. From creative web apps to game design projects.
-                            My focus lies completely on creating the best possible experience for the user.
+                            Hi I'm Thomas! A developer with a soft spot for games, good design and of course good vibes.
+                            I spend most of my time looking at a screen, as developers do. Whether it's a web app or a
+                            game project,
+                            I'm always up for the challenge.
+
+                            I take my work seriously, but not myself. If something isn't good enough I'll happily tear
+                            it down and start over.
                         </p>
                         <p className="text-[#e2f0ee]/70 leading-relaxed">
                             Whether it's a website or a game in the making, I always look at my work with a
@@ -175,28 +180,59 @@ function About() {
                             What makes me unique?
                         </h2>
                         <p className="text-[#e2f0ee]/70 leading-relaxed">
-                            Placeholder — tell visitors what sets you apart, your approach, your mindset.
+                            I bring a lot of drive to the projects I work on.
+                            If something isn't good enough, I'd rather go back to the drawing board than push through
+                            with a half-baked idea.
+                            Quality over speed. I am however also very flexible in what is, and isn't a good idea.
+                            <br>
+                            </br>
+                            I work closely with feedback.
+                            Not just from teammates, but from the people who actually use what we build.
+                            Getting input from the target audience early and often is something I genuinely believe in.
+                            <br>
+                            </br>
+                            I'm comfortable both in a team and working independently.
+                            In a team setting I value clear ownership.
+                            If I'm responsible for the user experience, that's where my full energy goes.
+                            If it's keeping the codebase clean and structured, I commit to that just as deeply.
+                            I think projects run best when everyone is the final say in their own domain.
                         </p>
                     </div>
 
                     {/* Personal hobbies */}
                     <div>
                         <h2 className="text-2xl font-semibold text-[#e2f0ee] mb-4">
-                            A couple personal hobbies
+                            A couple personal hobbies.
                         </h2>
                         <p className="text-[#e2f0ee]/70 leading-relaxed">
-                            Placeholder — share what you do outside of work/school.
+                            Gaming has always been a big part of my life, strategy games in particular.
+                            It's where my patience comes from, and patience turns out to be surprisingly useful when
+                            debugging at 11pm.
+                            <br></br>
+                            Outside of screens I enjoy social outings and spending time with people,
+                            though I'm equally happy working on personal projects at home. I don't really separate the
+                            two. A good evening can be either.
+                            <br></br>
+                            Lately I've been on a pixel art journey.
+                            Learning to create sprites that feel charming and alive is something I'm genuinely excited
+                            about.
+                            I'm trying to get better so that i can reuse the sprites in my 2d games.
                         </p>
                     </div>
 
                     {/* Current focus */}
                     <div>
                         <h2 className="text-2xl font-semibold text-[#e2f0ee] mb-4">
-                            My current focus
+                            My current focus.
                         </h2>
                         <p className="text-[#e2f0ee]/70 leading-relaxed">
-                            My current focus is on developing myself through new engines and projects,
-                            and finding out what way of working works best for me.
+                            Right now I'm deepening my knowledge of Unity and pushing myself further into 2D game
+                            development.
+                            I want to get to a point where I can take a game from concept to become something I can be
+                            proud of.
+
+                            On the web side of things I'm continuing to refine my frontend skills and looking for new
+                            ideas for design.
                         </p>
                     </div>
 

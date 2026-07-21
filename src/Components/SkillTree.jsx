@@ -1,8 +1,6 @@
 import {useEffect, useRef, useState} from "react";
 import SpatialCubesAmbient from "./SpatialCubesAmbient.jsx";
 
-// ─── Node data ────────────────────────────────────────────────────────────────
-// Fill in real descriptions when ready. color: root | game | web | future
 const NODES = [
     {
         id: 0, x: 100, y: 300,
@@ -56,7 +54,8 @@ const NODES = [
         id: 6, x: 640, y: 100,
         label: "?",
         title: "Unknown — Game Path",
-        desc: "A future game project — bigger in scope, more ambitious. What comes after Purify is still being written.",
+        desc: "A future game project. One that will most likely take place in Unity, as i want to learn more about the engine. And learn" +
+            "how to make 2d games.",
         tags: ["Future", "Game"],
         color: "future",
     },
@@ -64,7 +63,8 @@ const NODES = [
         id: 7, x: 640, y: 280,
         label: "?",
         title: "Unknown — Web Path",
-        desc: "The next step after this portfolio. Something more complex, more ambitious — maybe a full-stack project.",
+        desc: "The next step after this portfolio. This will involve full-stack for sure as I want to be able to create whole projects." +
+            "This could also be upgrading and improving to previous ideas, like this portfolio.",
         tags: ["Future", "Web"],
         color: "future",
     },
@@ -72,7 +72,7 @@ const NODES = [
         id: 8, x: 640, y: 420,
         label: "?",
         title: "Unknown — Career",
-        desc: "Where the internship leads. A full-time role, new skills, new team. The destination is unclear — and that's exciting.",
+        desc: "Where the internship leads. A full-time role, new skills, new team... Will this be at your workplace?",
         tags: ["Future", "Career"],
         color: "future",
     },
@@ -87,7 +87,7 @@ const EDGES = [
     [5, 8],
 ];
 
-// ─── Colors ───────────────────────────────────────────────────────────────────
+// Colors
 const C = {
     TEAL: "#09BC8A",
     TEAL_MID: "#09BC8A88",
@@ -401,13 +401,6 @@ export default function SkillTree() {
                 style={{cursor: "grab"}}
             />
 
-            {/*
-                ── Gradient fades — top and bottom ─────────────────────────────
-                These sit above the canvas (z-10) and fade the page background
-                color (#0e2d33) into transparent, creating a "slope down" feel
-                instead of a hard peek-through-a-hole edge. Same technique as
-                the carousel topSvg/bottomSvg gradients on the homepage.
-            ── */}
             <div
                 className="absolute top-0 left-0 right-0 z-10 pointer-events-none"
                 style={{
@@ -428,31 +421,6 @@ export default function SkillTree() {
                 {zoomed ? "double-click to zoom out" : "drag to pan · double-click to zoom"}
             </p>
 
-            {/*
-                ── Hover info card — viewport-anchored ──────────────────────────
-
-                WHY position: fixed?
-                The skill tree canvas lives inside a section with a fixed height
-                (600px). If the user scrolls down so the canvas is partially off
-                screen, any child with position: absolute would scroll away with
-                it — making the popup invisible exactly when the user needs it.
-
-                position: fixed takes the element OUT of the normal document
-                flow and pins it relative to the BROWSER VIEWPORT instead of
-                its parent. So no matter how far the user has scrolled, this
-                card always appears at the same spot on screen.
-
-                bottom: 24px  — 24px from the bottom edge of the viewport
-                left: 50%     — start at the horizontal center
-                transform: translateX(-50%)  — shift left by half its own
-                                               width so it's truly centered
-
-                z-index: 50 — sits above everything else on the page including
-                the nav, since we want it always readable.
-
-                pointerEvents: none — the card is purely visual, never blocks
-                clicks or hovers on the canvas behind it.
-            ── */}
             <div
                 style={{
                     position: "fixed",

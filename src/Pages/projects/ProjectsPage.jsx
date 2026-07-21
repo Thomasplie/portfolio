@@ -184,7 +184,7 @@ function ProjectsPage() {
                     <div>
                         <p className="mb-4 text-sm md:text-base font-medium text-[#09BC8A]">My Work</p>
                         <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold">Projects.</h1>
-                        <p className="mt-4 text-lg md:text-2xl">Things I've built — and am still building.</p>
+                        <p className="mt-4 text-lg md:text-2xl">Things I've built, and am still building.</p>
                     </div>
                 }
             />

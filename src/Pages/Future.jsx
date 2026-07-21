@@ -17,21 +17,14 @@ function Future() {
                             Future Plans.
                         </h1>
                         <p className="mt-4 text-lg md:text-2xl text-white/70">
-                            Where I've been — and where I'm going.
+                            Where I've been, and where I'm going.
                         </p>
                     </div>
                 }
             />
 
-            {/*
-                ── Skill tree section ───────────────────────────────────────────
-                The BlockEdgeDecorations sit INSIDE this relative wrapper so
-                they overlap the SkillTree canvas from above and below —
-                exactly like every other page. No separate sections needed.
-            ── */}
             <section className="relative w-full">
 
-                {/* Bites down from top — page bg color blends into the dark canvas */}
                 <BlockEdgeDecoration
                     color="#124559"
                     position="top"
@@ -41,7 +34,6 @@ function Future() {
 
                 <SkillTree/>
 
-                {/* Bites up from bottom — same color so exit is seamless */}
                 <BlockEdgeDecoration
                     color="#124559"
                     position="bottom"
@@ -50,7 +42,6 @@ function Future() {
 
             </section>
 
-            {/* ── Closing text section — same pattern as Homepage ── */}
             <section className="relative w-full py-40">
 
                 <BlockEdgeDecoration
@@ -67,15 +58,19 @@ function Future() {
                     </h2>
 
                     <article className="mt-6 text-left leading-relaxed text-[#e2f0ee]/80 break-words">
-                        This skill tree is a living document — it grows as I do.
+                        This skill tree represents the most important steps I have taken during my journey as a
+                        developer.
                         The nodes you see marked with a <span className="text-[#7F77DD] font-semibold">?</span> aren't
-                        empty spaces, they're open doors. I don't know exactly where they lead yet,
-                        and honestly that's the most exciting part.
+                        empty spaces, they're oppertunities I just haven't explored yet. I have a lot of plans for the
+                        future, like
+                        creating games, learning new coding languages, exploring other game-engines and ofcourse
+                        updating and improving
+                        this portfolio, you name it.
                     </article>
 
                     <article className="mt-6 text-left leading-relaxed text-[#e2f0ee]/80 break-words">
-                        If you want to be part of where this goes next — whether that's an internship,
-                        a collaboration, or just a conversation — feel free to reach out.
+                        If you want to be part of where this goes next, whether that's an internship,
+                        a collaboration, or just a conversation. Feel free to reach out.
                     </article>
 
                 </div>

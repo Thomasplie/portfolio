@@ -78,7 +78,7 @@ function Homepage() {
                 <div className="my-16">
                     <div className="flex">
                         <div className="flex-2">
-                            <h2 className="font-bold text-white text-2xl">Some of my work</h2>
+                            <h2 className="font-bold text-white text-2xl">Some of my work.</h2>
                             <article className="text-white">
                                 These are some projects I was a part of. We did these projects in teams. <br/>
                                 My contribution will be elaborated on, on their dedicated page.
@@ -126,7 +126,7 @@ function Homepage() {
                 <div className="mx-auto px-96 text-center">
 
                     <h2 className="text-center text-3xl font-semibold tracking-wide text-[#e2f0ee]">
-                        Further Information
+                        Further Information.
                     </h2>
 
                     <article className="mt-4 text-left text-[#e2f0ee]/80 wrap-break-word">

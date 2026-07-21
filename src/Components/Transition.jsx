@@ -7,6 +7,8 @@ function Transition({
                         topSvg = null,
                         bottomSvg = null,
                         fullWidthContent = false,
+                        fadeColor = null,
+                        fadeHeight = "clamp(70px, 13vw, 200px)",
                     }) {
 
     return (
@@ -19,6 +21,17 @@ function Transition({
                 </div>
             )}
 
+            {/* Top fade — only renders when fadeColor is provided */}
+            {fadeColor && (
+                <div
+                    className="absolute top-0 left-0 right-0 z-20 pointer-events-none"
+                    style={{
+                        height: fadeHeight,
+                        background: `linear-gradient(to bottom, ${fadeColor} 0%, transparent 100%)`,
+                    }}
+                />
+            )}
+
             {/* Main content */}
             <div className={`relative z-10 h-full w-full ${fullWidthContent ? "px-0" : "mx-auto max-w-7xl px-6"}
           ${contentClassName}
@@ -26,6 +39,17 @@ function Transition({
             >
                 {children}
             </div>
+
+            {/* Bottom fade — only renders when fadeColor is provided */}
+            {fadeColor && (
+                <div
+                    className="absolute bottom-0 left-0 right-0 z-20 pointer-events-none"
+                    style={{
+                        height: fadeHeight,
+                        background: `linear-gradient(to top, ${fadeColor} 0%, transparent 100%)`,
+                    }}
+                />
+            )}
 
             {/* Bottom SVG layer */}
             {bottomSvg && (

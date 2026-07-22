@@ -6,7 +6,7 @@ const NODES = [
         id: 0, x: 100, y: 300,
         label: "Started\nCMGT",
         title: "Started CMGT",
-        desc: "When I started CMGT I had no clue what I was doing in web-dev. It was the beginning of everything — a blank slate and a lot of curiosity.",
+        desc: "When I started CMGT I had no clue what I was doing in web-dev. It was the beginning of everything, a blank slate and a lot of curiosity.",
         tags: ["CMGT", "2023", "Start"],
         color: "root",
     },
@@ -87,7 +87,6 @@ const EDGES = [
     [5, 8],
 ];
 
-// Colors
 const C = {
     TEAL: "#09BC8A",
     TEAL_MID: "#09BC8A88",
@@ -131,7 +130,6 @@ function getEdgeColor(a, b) {
     return C.TEAL_MID;
 }
 
-// ─── Draw helpers ─────────────────────────────────────────────────────────────
 function drawRR(ctx, x, y, w, h, r, fill, stroke, sw, dash) {
     if (dash) ctx.setLineDash([4, 4]); else ctx.setLineDash([]);
     ctx.beginPath();
@@ -199,13 +197,12 @@ function drawNode(ctx, node, ox, oy, hovered) {
     }
 }
 
-// ─── Component ────────────────────────────────────────────────────────────────
 export default function SkillTree() {
     const canvasRef = useRef(null);
     const parentRef = useRef(null);
     const oxRef = useRef(0);
     const oyRef = useRef(0);
-    const scaleRef = useRef(1);          // zoom level
+    const scaleRef = useRef(1);
     const dragRef = useRef(false);
     const lastRef = useRef({x: 0, y: 0});
     const hoveredRef = useRef(null);
@@ -213,6 +210,16 @@ export default function SkillTree() {
 
     const [hovered, setHovered] = useState(null);
     const [zoomed, setZoomed] = useState(false);
+
+    // Touch specific tracking, separate from the mouse refs above since touch
+    // needs a bit more bookkeeping, a tap has to be told apart from a drag,
+    // and double tap has to be detected manually since the native dblclick
+    // event does not fire reliably for touch input the way it does for mice
+    const touchStartRef = useRef({x: 0, y: 0});
+    const touchMovedRef = useRef(false);
+    const lastTouchEndTimeRef = useRef(0);
+    const DRAG_THRESHOLD_PX = 8;
+    const DOUBLE_TAP_MS = 300;
 
     useEffect(() => {
         const canvas = canvasRef.current;
@@ -243,12 +250,10 @@ export default function SkillTree() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
             ctx.save();
-            // Apply zoom centered on canvas center
             ctx.translate(W() / 2, H() / 2);
             ctx.scale(sc, sc);
             ctx.translate(-W() / 2, -H() / 2);
 
-            // subtle grid
             ctx.strokeStyle = "#ffffff06";
             ctx.lineWidth = 0.5;
             const gx = ((ox % 40) + 40) % 40;
@@ -266,7 +271,6 @@ export default function SkillTree() {
                 ctx.stroke();
             }
 
-            // edges
             EDGES.forEach(([ai, bi]) => {
                 const a = NODES[ai], b = NODES[bi];
                 drawPCBLine(ctx,
@@ -277,7 +281,6 @@ export default function SkillTree() {
                 );
             });
 
-            // nodes
             NODES.forEach(n => drawNode(ctx, n, ox, oy, hoveredRef.current));
             ctx.restore();
         }
@@ -290,7 +293,6 @@ export default function SkillTree() {
         loop();
 
         function getHit(mx, my) {
-            // Transform screen coords back to canvas space accounting for zoom
             const sc = scaleRef.current;
             const cw = W(), ch = H();
             const cx2 = (mx - cw / 2) / sc + cw / 2;
@@ -342,7 +344,6 @@ export default function SkillTree() {
             canvas.style.cursor = "grab";
         }
 
-        // Double-click to zoom in/out — toggles between 1x and 1.8x
         let zoomAnimRef = null;
 
         function animateZoom(from, to, duration = 300) {
@@ -350,7 +351,7 @@ export default function SkillTree() {
 
             function tick(now) {
                 const t = Math.min((now - start) / duration, 1);
-                const ease = t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t; // ease in-out quad
+                const ease = t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
                 scaleRef.current = from + (to - from) * ease;
                 if (t < 1) zoomAnimRef = requestAnimationFrame(tick);
             }
@@ -365,11 +366,82 @@ export default function SkillTree() {
             setZoomed(!isZoomed);
         }
 
+        // Touch handlers, mirror the mouse handlers above but with the extra
+        // step of telling a tap apart from a drag, since touch input has no
+        // concept of hover the way a mouse cursor does. A short movement is
+        // treated as a tap and triggers the info card, a longer movement is
+        // treated as a drag and pans the canvas the same way mouse drag does.
+        function onTouchStart(e) {
+            if (e.touches.length !== 1) return; // ignore pinch or multi finger gestures
+            const t = e.touches[0];
+            touchStartRef.current = {x: t.clientX, y: t.clientY};
+            touchMovedRef.current = false;
+            lastRef.current = {x: t.clientX, y: t.clientY};
+        }
+
+        function onTouchMove(e) {
+            if (e.touches.length !== 1) return;
+            const t = e.touches[0];
+
+            const totalDx = t.clientX - touchStartRef.current.x;
+            const totalDy = t.clientY - touchStartRef.current.y;
+            if (Math.hypot(totalDx, totalDy) > DRAG_THRESHOLD_PX) {
+                touchMovedRef.current = true;
+            }
+
+            if (touchMovedRef.current) {
+                oxRef.current += t.clientX - lastRef.current.x;
+                oyRef.current += t.clientY - lastRef.current.y;
+                // Once the gesture is recognised as a drag, stop the page
+                // itself from scrolling underneath the finger, panning the
+                // tree and scrolling the page at the same time would fight
+                // each other and feel broken
+                e.preventDefault();
+            }
+
+            lastRef.current = {x: t.clientX, y: t.clientY};
+        }
+
+        function onTouchEnd(e) {
+            const now = performance.now();
+
+            if (!touchMovedRef.current) {
+                // Movement never crossed the drag threshold, treat this as a tap
+                const rect = canvas.getBoundingClientRect();
+                const touch = e.changedTouches[0];
+                const mx = touch.clientX - rect.left;
+                const my = touch.clientY - rect.top;
+
+                const hit = getHit(mx, my);
+                hoveredRef.current = hit;
+                setHovered(hit);
+
+                if (now - lastTouchEndTimeRef.current < DOUBLE_TAP_MS) {
+                    const isZoomed = scaleRef.current > 1.1;
+                    animateZoom(scaleRef.current, isZoomed ? 1 : 1.8);
+                    setZoomed(!isZoomed);
+                }
+            }
+
+            lastTouchEndTimeRef.current = now;
+        }
+
+        function onTouchCancel() {
+            touchMovedRef.current = false;
+        }
+
         canvas.addEventListener("mousedown", onMouseDown);
         canvas.addEventListener("mousemove", onMouseMove);
         canvas.addEventListener("mouseup", onMouseUp);
         canvas.addEventListener("mouseleave", onMouseLeave);
         canvas.addEventListener("dblclick", onDblClick);
+        // touchmove needs passive false since it calls preventDefault once a
+        // drag is recognised, touchstart and touchend never call
+        // preventDefault so they can stay passive
+        canvas.addEventListener("touchstart", onTouchStart, {passive: true});
+        canvas.addEventListener("touchmove", onTouchMove, {passive: false});
+        canvas.addEventListener("touchend", onTouchEnd, {passive: true});
+        canvas.addEventListener("touchcancel", onTouchCancel, {passive: true});
 
         return () => {
             cancelAnimationFrame(rafRef.current);
@@ -380,25 +452,28 @@ export default function SkillTree() {
             canvas.removeEventListener("mouseup", onMouseUp);
             canvas.removeEventListener("mouseleave", onMouseLeave);
             canvas.removeEventListener("dblclick", onDblClick);
+            canvas.removeEventListener("touchstart", onTouchStart);
+            canvas.removeEventListener("touchmove", onTouchMove);
+            canvas.removeEventListener("touchend", onTouchEnd);
+            canvas.removeEventListener("touchcancel", onTouchCancel);
         };
     }, []);
 
     return (
         <div
             ref={parentRef}
-            className="relative w-full overflow-hidden bg-[#0d1117]"
-            style={{height: "120vh"}}
+            className="relative w-full overflow-hidden bg-[#0d1117] h-[55vh] sm:h-[65vh] md:h-[85vh] lg:h-[120vh]"
         >
-            {/* ── Ambient cube background ── */}
+            {/* Ambient cube background */}
             <div className="absolute inset-0 z-0">
                 <SpatialCubesAmbient/>
             </div>
 
-            {/* ── Skill tree canvas ── */}
+            {/* Skill tree canvas */}
             <canvas
                 ref={canvasRef}
                 className="absolute inset-0 z-10"
-                style={{cursor: "grab"}}
+                style={{cursor: "grab", touchAction: "none"}}
             />
 
             <div
@@ -416,9 +491,9 @@ export default function SkillTree() {
                 }}
             />
 
-            {/* ── Hint label — top center so it's always visible ── */}
-            <p className="absolute top-[clamp(80px,14vw,210px)] left-1/2 -translate-x-1/2 z-20 text-[11px] text-[#09BC8A] font-mono pointer-events-none select-none opacity-70 whitespace-nowrap">
-                {zoomed ? "double-click to zoom out" : "drag to pan · double-click to zoom"}
+            {/* Hint label, top center so it's always visible */}
+            <p className="absolute top-[clamp(80px,14vw,210px)] left-1/2 -translate-x-1/2 z-20 text-[11px] text-[#09BC8A] font-mono pointer-events-none select-none opacity-70 whitespace-nowrap text-center px-4">
+                {zoomed ? "tap or double-click to zoom out" : "drag or swipe to pan, double-tap or double-click to zoom"}
             </p>
 
             <div

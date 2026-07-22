@@ -2,22 +2,10 @@ import {useEffect, useRef, useState} from "react";
 import ProjectCard from "./ProjectCard";
 import projects from "../../data/projects.js";
 
-// ─── Carousel ────────────────────────────────────────────────────────────────
-// Generic infinite scroll carousel.
-//
-// Props:
-//   items      — array of data objects to render (defaults to projects)
-//   renderCard — function(item, handlers, className) → JSX
-//                Called for each item. If not provided, renders ProjectCard.
-//
-// This keeps the Homepage carousel working with zero changes while allowing
-// the About page to pass tools + ToolCard.
-
 const BASE_SPEED = 80;
 const EASE = 0.06;
 
 function Carousel({items, renderCard}) {
-    // Fall back to projects data if nothing is passed
     const data = items ?? projects;
 
     const [isPlaying, setIsPlaying] = useState(true);
@@ -63,8 +51,6 @@ function Carousel({items, renderCard}) {
             lastTimeRef.current = time;
             speedRef.current += (targetSpeedRef.current - speedRef.current) * EASE;
 
-            // Re-measure every frame — SVG cards report 0 on first frame,
-            // continuous measurement guarantees the loop point is always correct
             if (groupRef.current) {
                 const measured = groupRef.current.offsetWidth;
                 if (measured > 0) groupWidthRef.current = measured;
@@ -92,7 +78,6 @@ function Carousel({items, renderCard}) {
         targetSpeedRef.current = hoveredCardId !== null ? 0 : BASE_SPEED;
     }, [isPlaying, hoveredCardId]);
 
-    // Default card renderer — ProjectCard
     function defaultRenderCard(item, {onMouseEnter, onMouseLeave}, className) {
         return (
             <ProjectCard
@@ -166,7 +151,7 @@ function Carousel({items, renderCard}) {
                 </div>
             </div>
 
-            {/* Hovered item info card  */}
+            {/* Hovered item info card */}
             {!renderCard && (
                 <div
                     className="absolute left-0 right-0 top-full mt-8 mx-auto min-h-[140px] max-w-2xl rounded-2xl bg-[#0e2d33]/90 p-6 shadow-sm transition-all duration-300">
@@ -184,8 +169,15 @@ function Carousel({items, renderCard}) {
                             </div>
                         </>
                     ) : (
-                        <div className="flex h-full items-center justify-center text-sm text-[#e2f0ee]/70">
-                            Hover over a project card to view its details.
+                        <div
+                            className="flex h-full items-center justify-center text-sm text-[#e2f0ee]/70 text-center px-4">
+                            {/* Below desktop, touch is the primary input, tapping navigates immediately, there is no hover state to preview first */}
+                            <span className="block lg:hidden">
+                                Tap a card to visit the project.
+                            </span>
+                            <span className="hidden lg:block">
+                                Hover over a project card to view its details.
+                            </span>
                         </div>
                     )}
                 </div>

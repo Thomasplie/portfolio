@@ -7,16 +7,16 @@ import projects from "../../data/projects.js";
 
 const PROJECTS_PER_PAGE = 3;
 
-// ─── Pagination bar ───────────────────────────────────────────────────────────
+// Pagination bar
 function PaginationBar({currentPage, totalPages, onPageChange}) {
     return (
-        <div className="flex items-center justify-center gap-2 py-8">
+        <div className="flex flex-wrap items-center justify-center gap-2 py-6 sm:py-8 px-4">
             {Array.from({length: totalPages}, (_, i) => i + 1).map((page) => (
                 <button
                     key={page}
                     onClick={() => onPageChange(page)}
                     className={`
-                        w-10 h-10 text-sm font-semibold border transition-all duration-200
+                        w-9 h-9 sm:w-10 sm:h-10 text-sm font-semibold border transition-all duration-200
                         ${currentPage === page
                         ? "bg-[#09BC8A] text-black border-[#09BC8A]"
                         : "bg-transparent text-[#e2f0ee] border-[#09BC8A44] hover:border-[#09BC8A] hover:text-[#09BC8A]"
@@ -36,19 +36,17 @@ function PaginationBar({currentPage, totalPages, onPageChange}) {
     );
 }
 
-// ─── Jagged hole with ambient cubes + project image ──────────────────────────
 function ProjectHole({image, title}) {
     return (
-        <div className="relative flex-shrink-0 w-[380px] h-[300px]">
+        <div className="relative flex-shrink-0 w-full max-w-[380px] aspect-[380/300] mx-auto md:mx-0">
 
-            {/* Outer jagged SVG mask shape — this is the visible "hole" */}
+            {/* Outer jagged SVG mask shape, this is the visible hole */}
             <svg
                 className="absolute inset-0 w-full h-full"
                 viewBox="0 0 380 300"
                 preserveAspectRatio="none"
                 style={{zIndex: 0}}
             >
-                {/* The jagged pixel shape filled with neutral-900 */}
                 <polygon
                     points="
                         0,24   15,24  15,0   46,0   46,15
@@ -65,7 +63,7 @@ function ProjectHole({image, title}) {
                 />
             </svg>
 
-            {/* Canvas + image clipped with % values so it scales at any size */}
+            {/* Canvas and image clipped with percentage values so it scales at any size */}
             <div
                 className="absolute inset-0 overflow-hidden"
                 style={{
@@ -83,14 +81,12 @@ function ProjectHole({image, title}) {
                     zIndex: 1,
                 }}
             >
-                {/* Dark bg with ambient cubes */}
                 <div className="absolute inset-0 bg-neutral-900">
                     <SpatialCubesAmbient/>
                 </div>
 
-                {/* Project image on top */}
                 {image && (
-                    <div className="absolute inset-0 flex items-center justify-center z-10 p-8">
+                    <div className="absolute inset-0 flex items-center justify-center z-10 p-6 sm:p-8">
                         <img
                             src={image}
                             alt={`${title} project screenshot`}
@@ -103,23 +99,23 @@ function ProjectHole({image, title}) {
     );
 }
 
-// ─── Single project row ───────────────────────────────────────────────────────
+// Single project row, stacks vertically below md, sits side by side and
+// alternates direction from md up exactly like before
 function ProjectRow({project, index}) {
     const isEven = index % 2 === 0;
     const accentColor = project.type === "website" ? "#F17F29" : "#09BC8A";
+    const rowDirection = isEven ? "md:flex-row" : "md:flex-row-reverse";
 
     return (
-        <div className="py-16 px-6">
+        <div className="py-10 sm:py-12 md:py-16 px-4 sm:px-6">
             <Link
                 to={`/my-projects/${project.slug}`}
-                className={`group flex items-center gap-16 ${isEven ? "flex-row" : "flex-row-reverse"}`}
+                className={`group flex flex-col ${rowDirection} items-center gap-8 md:gap-16`}
                 aria-label={`View ${project.title} project`}
             >
-                {/* ── Left/Right: image hole ── */}
                 <ProjectHole image={project.image} title={project.title}/>
 
-                {/* ── Right/Left: text ── */}
-                <div className="flex-1 min-w-0">
+                <div className="flex-1 min-w-0 text-center md:text-left">
                     <span
                         className="inline-block text-[10px] font-bold tracking-widest uppercase mb-3 px-3 py-1"
                         style={{color: accentColor, border: `1px solid ${accentColor}44`, borderRadius: "2px"}}
@@ -127,7 +123,7 @@ function ProjectRow({project, index}) {
                         {project.type}
                     </span>
 
-                    <h2 className="text-2xl md:text-3xl font-bold text-[#e2f0ee] mb-3 group-hover:text-[#09BC8A] transition-colors duration-200">
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-[#e2f0ee] mb-3 group-hover:text-[#09BC8A] transition-colors duration-200">
                         {project.title}
                     </h2>
 
@@ -135,7 +131,7 @@ function ProjectRow({project, index}) {
                         {project.description}
                     </p>
 
-                    <div className="flex flex-wrap gap-2 mb-5">
+                    <div className="flex flex-wrap justify-center md:justify-start gap-2 mb-5">
                         {project.tags.map((tag) => (
                             <span key={tag}
                                   className="px-3 py-1 text-xs font-medium rounded-sm bg-[#09BC8A] text-black">
@@ -161,7 +157,7 @@ function ProjectRow({project, index}) {
     );
 }
 
-// ─── Main page ────────────────────────────────────────────────────────────────
+// Main page
 function ProjectsPage() {
     const [currentPage, setCurrentPage] = useState(1);
 
@@ -177,37 +173,34 @@ function ProjectsPage() {
     return (
         <div className="bg-[#0e2d33]">
 
-            {/* ── Hero — reuse HeaderBanner with overrideText ── */}
             <HeaderBanner
                 images={projects.map((p) => p.image)}
                 overrideText={
                     <div>
-                        <p className="mb-4 text-sm md:text-base font-medium text-[#09BC8A]">My Work</p>
-                        <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold">Projects.</h1>
-                        <p className="mt-4 text-lg md:text-2xl">Things I've built, and am still building.</p>
+                        <p className="mb-3 sm:mb-4 text-xs sm:text-sm md:text-base font-medium text-[#09BC8A]">My
+                            Work</p>
+                        <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold">Projects.</h1>
+                        <p className="mt-3 sm:mt-4 text-base sm:text-lg md:text-2xl">Things I've built, and am still
+                            building.</p>
                     </div>
                 }
             />
 
-            {/* ── Content section — same pattern as Homepage ── */}
-            <section className="relative w-full py-24">
+            <section className="relative w-full py-12 sm:py-16 md:py-24">
 
-                {/* Top transition — dark teal biting into page from top */}
                 <BlockEdgeDecoration
                     color="#124559"
                     position="top"
                     height="clamp(70px, 13vw, 200px)"
                 />
 
-                {/* Top pagination */}
                 <PaginationBar
                     currentPage={currentPage}
                     totalPages={totalPages}
                     onPageChange={handlePageChange}
                 />
 
-                {/* Project rows */}
-                <div className="mx-auto max-w-5xl px-6 divide-y divide-[#124559]">
+                <div className="mx-auto max-w-5xl px-2 sm:px-4 divide-y divide-[#124559]">
                     {visibleProjects.map((project, index) => (
                         <ProjectRow
                             key={project.id}
@@ -217,14 +210,12 @@ function ProjectsPage() {
                     ))}
                 </div>
 
-                {/* Bottom pagination */}
                 <PaginationBar
                     currentPage={currentPage}
                     totalPages={totalPages}
                     onPageChange={handlePageChange}
                 />
 
-                {/* Bottom transition — flipped so it mirrors the top */}
                 <BlockEdgeDecoration
                     color="#124559"
                     position="bottom"

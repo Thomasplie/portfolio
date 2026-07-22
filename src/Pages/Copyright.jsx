@@ -5,7 +5,7 @@ function Copyright() {
     return (
         <div className="bg-[#0e2d33] min-h-screen">
 
-            <section className="relative w-full py-32">
+            <section className="relative w-full py-16 sm:py-24 md:py-32">
 
                 <BlockEdgeDecoration
                     color="#124559"
@@ -16,16 +16,15 @@ function Copyright() {
 
                 <div className="mx-auto max-w-3xl px-6">
 
-                    <h1 className="text-3xl font-bold text-[#e2f0ee] mb-2">
+                    <h1 className="text-2xl sm:text-3xl font-bold text-[#e2f0ee] mb-2">
                         Copyright & Terms of Use
                     </h1>
-                    <p className="text-[#e2f0ee]/50 text-sm mb-12">
+                    <p className="text-[#e2f0ee]/50 text-sm mb-8 sm:mb-12">
                         Last updated: {new Date().getFullYear()}
                     </p>
 
-                    {/* ── Copyright notice ── */}
-                    <div className="mb-10">
-                        <h2 className="text-xl font-semibold text-[#e2f0ee] mb-3">
+                    <div className="mb-8 sm:mb-10">
+                        <h2 className="text-lg sm:text-xl font-semibold text-[#e2f0ee] mb-3">
                             Copyright
                         </h2>
                         <p className="text-[#e2f0ee]/70 leading-relaxed">
@@ -34,16 +33,15 @@ function Copyright() {
                             You're welcome to look around and get inspired, but please don't copy or reuse
                             this content without permission.
                         </p>
-                        <p className="text-[#e2f0ee]/70 leading-relaxed">
+                        <p className="text-[#e2f0ee]/70 leading-relaxed mt-3">
                             -The error page image is from Nintendo's game pokopia.- <br></br>Thought i might give them
                             their own little section JUST
                             in case.
                         </p>
                     </div>
 
-                    {/* ── Project work ── */}
-                    <div className="mb-10">
-                        <h2 className="text-xl font-semibold text-[#e2f0ee] mb-3">
+                    <div className="mb-8 sm:mb-10">
+                        <h2 className="text-lg sm:text-xl font-semibold text-[#e2f0ee] mb-3">
                             Project Work
                         </h2>
                         <p className="text-[#e2f0ee]/70 leading-relaxed">
@@ -59,9 +57,8 @@ function Copyright() {
                         </p>
                     </div>
 
-                    {/* ── Third-party content ── */}
-                    <div className="mb-10">
-                        <h2 className="text-xl font-semibold text-[#e2f0ee] mb-3">
+                    <div className="mb-8 sm:mb-10">
+                        <h2 className="text-lg sm:text-xl font-semibold text-[#e2f0ee] mb-3">
                             Third-Party Content
                         </h2>
                         <p className="text-[#e2f0ee]/70 leading-relaxed">
@@ -72,9 +69,8 @@ function Copyright() {
                         </p>
                     </div>
 
-                    {/* ── No warranty ── */}
-                    <div className="mb-10">
-                        <h2 className="text-xl font-semibold text-[#e2f0ee] mb-3">
+                    <div className="mb-8 sm:mb-10">
+                        <h2 className="text-lg sm:text-xl font-semibold text-[#e2f0ee] mb-3">
                             No Warranty
                         </h2>
                         <p className="text-[#e2f0ee]/70 leading-relaxed">
@@ -83,9 +79,8 @@ function Copyright() {
                         </p>
                     </div>
 
-                    {/* ── Contact ── */}
                     <div className="mb-4">
-                        <h2 className="text-xl font-semibold text-[#e2f0ee] mb-3">
+                        <h2 className="text-lg sm:text-xl font-semibold text-[#e2f0ee] mb-3">
                             Questions or Concerns
                         </h2>
                         <p className="text-[#e2f0ee]/70 leading-relaxed">
@@ -97,7 +92,7 @@ function Copyright() {
 
                 </div>
 
-                <div className="flex justify-center mt-16">
+                <div className="flex justify-center mt-10 sm:mt-16 px-4">
                     <Link to="/" className="text-[#09BC8A] hover:underline text-base font-medium">
                         ← Back to home
                     </Link>

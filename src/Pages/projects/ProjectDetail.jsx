@@ -4,14 +4,20 @@ import BlockEdgeDecoration from "../../Components/BlockEdgeDecoration.jsx";
 import projects from "../../data/projects.js";
 
 // Jagged hole image
-// fit: "cover" (default) fills the frame and crops overflow — good for photos.
-// fit: "contain" shows the WHOLE image with empty space if needed — good for
-// screenshots/UI captures where cropping would cut off important content.
+// fit contain shows the whole image with empty space if needed, good for
+// screenshots or UI captures where cropping would cut off important content.
+// fit cover fills the frame and crops overflow, good for photos.
+//
+// The container now uses a percentage width capped at 260px plus an aspect
+// ratio instead of a fixed pixel width and height. Since the clip path below
+// is written in percentage points it stretches to fit whatever box this
+// sits in, so the jagged shape stays correct at any size, including a
+// narrow phone screen where the full 260px would otherwise overflow.
 function ProjectImage({src, alt, fit = "cover"}) {
     const fitClass = fit === "contain" ? "object-contain" : "object-cover";
 
     return (
-        <div className="relative flex-shrink-0 w-[260px] h-[320px]">
+        <div className="relative flex-shrink-0 w-full max-w-[260px] aspect-[260/320] mx-auto md:mx-0">
             <div
                 className="absolute inset-0 bg-neutral-900"
                 style={{clipPath: jaggedClip}}
@@ -42,10 +48,9 @@ function ProjectDetail() {
     const {slug} = useParams();
     const project = projects.find((p) => p.slug === slug);
 
-    // Not found
     if (!project) {
         return (
-            <div className="min-h-screen bg-[#0e2d33] flex flex-col items-center justify-center gap-4">
+            <div className="min-h-screen bg-[#0e2d33] flex flex-col items-center justify-center gap-4 px-4 text-center">
                 <p className="text-[#e2f0ee] text-2xl font-semibold">Project not found.</p>
                 <Link to="/my-projects" className="text-[#09BC8A] hover:underline text-sm">
                     ← Back to projects
@@ -63,13 +68,14 @@ function ProjectDetail() {
                 images={Array(4).fill(project.image)}
                 overrideText={
                     <div>
-                        <p className="mb-4 text-sm md:text-base font-medium" style={{color: accentColor}}>
+                        <p className="mb-3 sm:mb-4 text-xs sm:text-sm md:text-base font-medium"
+                           style={{color: accentColor}}>
                             {project.type}
                         </p>
-                        <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold">
+                        <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold">
                             {project.title}
                         </h1>
-                        <div className="mt-4 flex flex-wrap justify-center gap-2">
+                        <div className="mt-3 sm:mt-4 flex flex-wrap justify-center gap-2 px-4">
                             {project.tags.map((tag) => (
                                 <span
                                     key={tag}
@@ -84,8 +90,8 @@ function ProjectDetail() {
                 }
             />
 
-            {/* About the project */}
-            <section className="relative w-full py-48">
+            {/* About the project, stacks vertically below md, image and text sit side by side from md up */}
+            <section className="relative w-full py-16 sm:py-24 md:py-36 lg:py-48">
 
                 <BlockEdgeDecoration
                     color="#124559"
@@ -94,11 +100,12 @@ function ProjectDetail() {
                     height="clamp(70px, 13vw, 200px)"
                 />
 
-                <div className="mx-auto max-w-5xl px-6 flex items-start gap-16">
+                <div
+                    className="mx-auto max-w-5xl px-6 flex flex-col md:flex-row items-center md:items-start gap-8 md:gap-16">
 
-                    <div className="flex-1">
+                    <div className="flex-1 w-full">
 
-                        <div className="flex flex-wrap gap-6 mb-8">
+                        <div className="flex flex-wrap justify-center md:justify-start gap-6 mb-8">
                             {project.role && (
                                 <div>
                                     <p className="text-[9px] font-bold tracking-widest uppercase mb-1"
@@ -120,10 +127,9 @@ function ProjectDetail() {
                             </div>
                         </div>
 
-                        {/* Long description */}
                         {project.longDescription?.length > 0 && (
                             <div className="mb-8">
-                                <h2 className="text-xl font-semibold text-[#e2f0ee] mb-3">
+                                <h2 className="text-lg sm:text-xl font-semibold text-[#e2f0ee] mb-3">
                                     About the project
                                 </h2>
                                 {project.longDescription.map((para, i) => (
@@ -134,10 +140,9 @@ function ProjectDetail() {
                             </div>
                         )}
 
-                        {/* Contribution */}
                         {project.contribution?.length > 0 && (
                             <div>
-                                <h2 className="text-xl font-semibold text-[#e2f0ee] mb-3">
+                                <h2 className="text-lg sm:text-xl font-semibold text-[#e2f0ee] mb-3">
                                     My contribution
                                 </h2>
                                 {project.contribution.map((para, i) => (
@@ -148,10 +153,9 @@ function ProjectDetail() {
                             </div>
                         )}
 
-                        {/* Credits & Attribution — for anything in the project that isn't yours */}
                         {project.credits && (
                             <div className="mt-8">
-                                <h2 className="text-xl font-semibold text-[#e2f0ee] mb-3">
+                                <h2 className="text-lg sm:text-xl font-semibold text-[#e2f0ee] mb-3">
                                     Credits & Attribution
                                 </h2>
                                 <p className="text-[#e2f0ee]/70 leading-relaxed text-sm">
@@ -160,15 +164,8 @@ function ProjectDetail() {
                             </div>
                         )}
 
-                        {/*
-                            ── External links ──────────────────────────────────
-                            Both use <a>, not <Link>, because GitHub and a live
-                            demo are OUTSIDE this app entirely. <Link> is only
-                            for internal routes handled by React Router (like
-                            "/my-projects" below). Using <Link> on an external
-                            URL would try to route inside the app and break.
-                        ── */}
-                        <div className="flex flex-wrap gap-6 mt-4">
+                        {/* Both links use a plain anchor tag instead of Link, since GitHub and a live demo are outside this app entirely, Link is only for internal routes handled by React Router */}
+                        <div className="flex flex-wrap justify-center md:justify-start gap-6 mt-4">
                             {project.github && (
                                 <a
                                     href={project.github}
@@ -194,7 +191,6 @@ function ProjectDetail() {
                         </div>
                     </div>
 
-                    {/* ── Right: main project image ── */}
                     <ProjectImage
                         src={project.image}
                         alt={`${project.title} screenshot`}
@@ -202,9 +198,8 @@ function ProjectDetail() {
 
                 </div>
 
-                {/* ── Back link for projects without screenshots — internal route, uses Link ── */}
                 {(!project.screenshots || project.screenshots.length === 0) && (
-                    <div className="flex justify-center mt-16">
+                    <div className="flex justify-center mt-10 sm:mt-16 px-4">
                         <Link to="/my-projects" className="text-[#09BC8A] hover:underline text-base font-medium">
                             ← Back to all projects
                         </Link>
@@ -219,9 +214,9 @@ function ProjectDetail() {
 
             </section>
 
-            {/* ── Screenshots section ── */}
+            {/* Screenshots section, same stacking pattern applied to each alternating row */}
             {project.screenshots?.length > 0 && (
-                <section className="relative w-full py-24">
+                <section className="relative w-full py-12 sm:py-16 md:py-24">
 
                     <BlockEdgeDecoration
                         color="#124559"
@@ -231,33 +226,33 @@ function ProjectDetail() {
                     />
 
                     <div className="mx-auto max-w-5xl px-6">
-                        <h2 className="text-xl font-semibold text-[#e2f0ee] mb-10 text-center">
+                        <h2 className="text-lg sm:text-xl font-semibold text-[#e2f0ee] mb-8 sm:mb-10 text-center">
                             Screenshots
                         </h2>
 
-                        {/* Screenshots alternate left/right like ProjectsPage rows */}
-                        <div className="flex flex-col gap-16">
-                            {project.screenshots.map((screenshot, i) => (
-                                <div
-                                    key={i}
-                                    className={`flex items-center gap-16 ${i % 2 === 0 ? "flex-row" : "flex-row-reverse"}`}
-                                >
-                                    <ProjectImage
-                                        src={screenshot.src}
-                                        alt={screenshot.caption ?? `${project.title} screenshot ${i + 1}`}
-                                        fit={screenshot.fit}
-                                    />
-                                    {/* Caption, shows custom text or a fallback */}
-                                    <p className="flex-1 text-[#e2f0ee]/70 text-sm leading-relaxed">
-                                        {screenshot.caption ?? `Screenshot ${i + 1}`}
-                                    </p>
-                                </div>
-                            ))}
+                        <div className="flex flex-col gap-10 md:gap-16">
+                            {project.screenshots.map((screenshot, i) => {
+                                const rowDirection = i % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse";
+                                return (
+                                    <div
+                                        key={i}
+                                        className={`flex flex-col ${rowDirection} items-center gap-6 md:gap-16`}
+                                    >
+                                        <ProjectImage
+                                            src={screenshot.src}
+                                            alt={screenshot.caption ?? `${project.title} screenshot ${i + 1}`}
+                                            fit={screenshot.fit}
+                                        />
+                                        <p className="flex-1 text-[#e2f0ee]/70 text-sm leading-relaxed text-center md:text-left">
+                                            {screenshot.caption ?? `Screenshot ${i + 1}`}
+                                        </p>
+                                    </div>
+                                );
+                            })}
                         </div>
                     </div>
 
-                    {/* Back link — internal route, uses Link */}
-                    <div className="flex justify-center mt-16">
+                    <div className="flex justify-center mt-10 sm:mt-16 px-4">
                         <Link to="/my-projects" className="text-[#09BC8A] hover:underline text-base font-medium">
                             ← Back to all projects
                         </Link>

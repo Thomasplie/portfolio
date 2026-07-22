@@ -9,13 +9,13 @@ function Homepage() {
             </HeaderBanner>
 
 
-            <section className="relative w-full py-48">
+            <section className="relative w-full py-24 md:py-36 lg:py-48">
 
                 <BlockEdgeDecoration color="#124559" position="top" flipX="true" height="clamp(70px, 13vw, 200px)"/>
 
-                <div className="mx-auto px-96 text-center">
+                <div className="mx-auto px-6 sm:px-10 md:px-20 lg:px-48 xl:px-96 text-center">
 
-                    <h2 className="text-center text-3xl font-semibold tracking-wide text-[#e2f0ee]">
+                    <h2 className="text-center text-2xl md:text-3xl font-semibold tracking-wide text-[#e2f0ee]">
                         Hi there, great to see you!
                     </h2>
 
@@ -50,7 +50,7 @@ function Homepage() {
             <Transition
                 minHeight="min-h-[500px]"
                 bgClass="bg-[#071a1e]"
-                contentClassName="!max-w-[1400px]"
+                contentClassName="!max-w-[1400px] !px-4 sm:!px-6"
                 topSvg={
                     <svg viewBox="0 0 1 80" preserveAspectRatio="none" className="block w-full"
                          style={{height: "80px"}}>
@@ -78,34 +78,34 @@ function Homepage() {
             >
 
                 <div className="my-16">
-                    <div className="flex">
-                        <div className="flex-2">
-                            <h2 className="font-bold text-white text-2xl">Some of my work.</h2>
+                    <div className="flex flex-col md:flex-row gap-6 md:gap-4">
+                        <div className="flex-1 md:flex-2">
+                            <h2 className="font-bold text-white text-xl md:text-2xl">Some of my work.</h2>
                             <article className="text-white">
                                 These are some projects I was a part of. We did these projects in teams. <br/>
                                 My contribution will be elaborated on, on their dedicated page.
                             </article>
                         </div>
-                        <div className="flex-1 p-2 bg-[#09BC8A] rounded-2xl overflow-x-auto">
-                            <div className="flex h-full flex-col justify-evenly">
+                        <div className="flex-1 p-2 bg-[#09BC8A] rounded-2xl overflow-x-auto w-full md:w-auto">
+                            <div className="flex h-full flex-col justify-evenly gap-3 md:gap-0">
 
-                                <div className="flex items-center justify-between">
-                                    <p className="font-medium">
+                                <div className="flex items-center justify-between gap-3">
+                                    <p className="font-medium text-sm md:text-base">
                                         This Color card represents a WEBSITE project.
                                     </p>
 
-                                    <svg className="shrink-0 mr-8" width="20" height="20" stroke="#000000"
+                                    <svg className="shrink-0 mr-2 md:mr-8" width="20" height="20" stroke="#000000"
                                          strokeWidth="3" viewBox="0 0 40 40">
                                         <circle cx="20" cy="20" r="18" fill="#F17F29"/>
                                     </svg>
                                 </div>
 
-                                <div className="flex items-center justify-between">
-                                    <p className="font-medium">
+                                <div className="flex items-center justify-between gap-3">
+                                    <p className="font-medium text-sm md:text-base">
                                         This Color card represents a GAME project.
                                     </p>
 
-                                    <svg className="shrink-0 mr-8" width="20" height="20" stroke="#000000"
+                                    <svg className="shrink-0 mr-2 md:mr-8" width="20" height="20" stroke="#000000"
                                          strokeWidth="3" viewBox="0 0 40 40">
                                         <circle cx="20" cy="20" r="18" fill="#004346"/>
                                     </svg>
@@ -114,20 +114,20 @@ function Homepage() {
                         </div>
                     </div>
 
-                    <div className="relative mb-[250px]">
+                    <div className="relative mb-[200px] sm:mb-[220px] md:mb-[250px]">
                         <Carousel/>
                     </div>
 
                 </div>
             </Transition>
 
-            <section className="relative w-full py-40">
+            <section className="relative w-full py-24 md:py-32 lg:py-40">
 
                 <BlockEdgeDecoration color="#124559" position="top" flipX="true" height="clamp(70px, 13vw, 200px)"/>
 
-                <div className="mx-auto px-96 text-center">
+                <div className="mx-auto px-6 sm:px-10 md:px-20 lg:px-48 xl:px-96 text-center">
 
-                    <h2 className="text-center text-3xl font-semibold tracking-wide text-[#e2f0ee]">
+                    <h2 className="text-center text-2xl md:text-3xl font-semibold tracking-wide text-[#e2f0ee]">
                         Further Information.
                     </h2>
 
@@ -135,13 +135,12 @@ function Homepage() {
                         Despite having a lot of fun making this portfolio, and putting in a lot of effort, I am
                         afraid I will leave this version as it is. I have many plans for further upgrades, or should I
                         say "level ups," for this website, and I hope to improve the overall experience of visitors by
-                        making more things dynamic and storing data in an actual database. You can see more information
-                        about this website at -portfolio project link- for more detailed plans.
+                        making more things dynamic and storing data in an actual database.
                         But for now, I want to thank you for your time exploring my portfolio website. I hope you find
                         what you are looking for!
                     </article>
 
-                    <h3 className="mt-10 text-center text-2xl font-semibold tracking-wide text-[#e2f0ee]">
+                    <h3 className="mt-10 text-center text-xl md:text-2xl font-semibold tracking-wide text-[#e2f0ee]">
                         Stay tuned for future updates!
                     </h3>
 

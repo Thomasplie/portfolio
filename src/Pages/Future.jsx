@@ -10,19 +10,20 @@ function Future() {
             <HeaderBanner
                 overrideText={
                     <div>
-                        <p className="mb-4 text-sm md:text-base font-medium text-[#09BC8A]">
+                        <p className="mb-3 sm:mb-4 text-xs sm:text-sm md:text-base font-medium text-[#09BC8A]">
                             What's next
                         </p>
-                        <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold">
+                        <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold">
                             Future Plans.
                         </h1>
-                        <p className="mt-4 text-lg md:text-2xl text-white/70">
+                        <p className="mt-3 sm:mt-4 text-base sm:text-lg md:text-2xl text-white/70">
                             Where I've been, and where I'm going.
                         </p>
                     </div>
                 }
             />
 
+            {/* SkillTree already resizes itself via its own ResizeObserver watching this section, no fixed widths here to break */}
             <section className="relative w-full">
 
                 <BlockEdgeDecoration
@@ -42,7 +43,7 @@ function Future() {
 
             </section>
 
-            <section className="relative w-full py-40">
+            <section className="relative w-full py-16 sm:py-24 md:py-32 lg:py-40">
 
                 <BlockEdgeDecoration
                     color="#124559"
@@ -51,9 +52,9 @@ function Future() {
                     height="clamp(70px, 13vw, 200px)"
                 />
 
-                <div className="mx-auto px-96 text-center">
+                <div className="mx-auto px-6 sm:px-10 md:px-20 lg:px-48 xl:px-96 text-center">
 
-                    <h2 className="text-center text-3xl font-semibold tracking-wide text-[#e2f0ee]">
+                    <h2 className="text-center text-2xl md:text-3xl font-semibold tracking-wide text-[#e2f0ee]">
                         The journey continues.
                     </h2>
 

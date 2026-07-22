@@ -9,26 +9,26 @@ function About() {
     return (
         <div className="bg-[#0e2d33]">
 
-            {/* ── Hero — cubes with photos of me ── */}
+            {/* Hero, cubes with photos of me */}
             <HeaderBanner
                 images={aboutPhotos}
                 overrideText={
                     <div>
-                        <p className="mb-4 text-sm md:text-base font-medium text-[#09BC8A]">
+                        <p className="mb-3 sm:mb-4 text-xs sm:text-sm md:text-base font-medium text-[#09BC8A]">
                             About Me
                         </p>
-                        <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold">
+                        <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold">
                             Hi, I'm Thomas.
                         </h1>
-                        <p className="mt-4 text-lg md:text-2xl text-white/70">
+                        <p className="mt-3 sm:mt-4 text-base sm:text-lg md:text-2xl text-white/70">
                             Developer. Designer. Gamer.
                         </p>
                     </div>
                 }
             />
 
-            {/* ── Intro section ── */}
-            <section className="relative w-full py-48">
+            {/* Intro section, stacks vertically on mobile and tablet, sits side by side from md up */}
+            <section className="relative w-full py-16 sm:py-24 md:py-36 lg:py-48">
 
                 <BlockEdgeDecoration
                     color="#124559"
@@ -37,11 +37,11 @@ function About() {
                     height="clamp(70px, 13vw, 200px)"
                 />
 
-                <div className="mx-auto max-w-5xl px-6 flex items-center gap-16">
+                <div className="mx-auto max-w-5xl px-6 flex flex-col md:flex-row items-center gap-10 md:gap-16">
 
-                    {/* Left — text */}
-                    <div className="flex-1">
-                        <h2 className="text-2xl font-semibold text-[#e2f0ee] mb-4">
+                    {/* Text */}
+                    <div className="flex-1 w-full">
+                        <h2 className="text-xl sm:text-2xl font-semibold text-[#e2f0ee] mb-4 text-center md:text-left">
                             Hey there 👋
                         </h2>
                         <p className="text-[#e2f0ee]/70 leading-relaxed mb-4">
@@ -60,8 +60,9 @@ function About() {
                         </p>
                     </div>
 
-                    {/* Right  photo */}
-                    <div className="flex-shrink-0 w-[260px] h-[320px] relative">
+                    {/* Photo, scales down its box on smaller screens and centers itself when stacked */}
+                    <div
+                        className="flex-shrink-0 w-[200px] h-[260px] sm:w-[220px] sm:h-[290px] md:w-[260px] md:h-[320px] relative mx-auto md:mx-0">
                         <div
                             className="absolute inset-0 bg-neutral-900"
                             style={{
@@ -136,11 +137,11 @@ function About() {
                     </svg>
                 }
             >
-                <div className="my-16">
-                    <h2 className="text-center text-2xl font-bold text-[#e2f0ee] mb-2">
+                <div className="my-12 sm:my-16">
+                    <h2 className="text-center text-xl sm:text-2xl font-bold text-[#e2f0ee] mb-2 px-4">
                         My Tools
                     </h2>
-                    <p className="text-center text-[#e2f0ee]/50 text-sm mb-8">
+                    <p className="text-center text-[#e2f0ee]/50 text-sm mb-8 px-4">
                         Languages, frameworks and tools I work with
                     </p>
 
@@ -164,7 +165,7 @@ function About() {
             </Transition>
 
             {/* About me sections */}
-            <section className="relative w-full py-24">
+            <section className="relative w-full py-16 sm:py-20 md:py-24">
 
                 <BlockEdgeDecoration
                     color="#124559"
@@ -173,11 +174,11 @@ function About() {
                     height="clamp(70px, 13vw, 200px)"
                 />
 
-                <div className="mx-auto max-w-3xl px-6 flex flex-col gap-16 pt-8">
+                <div className="mx-auto max-w-3xl px-6 flex flex-col gap-12 sm:gap-16 pt-8">
 
                     {/* What makes me unique */}
                     <div>
-                        <h2 className="text-2xl font-semibold text-[#e2f0ee] mb-4">
+                        <h2 className="text-xl sm:text-2xl font-semibold text-[#e2f0ee] mb-4">
                             What makes me unique?
                         </h2>
                         <p className="text-[#e2f0ee]/70 leading-relaxed">
@@ -202,7 +203,7 @@ function About() {
 
                     {/* Personal hobbies */}
                     <div>
-                        <h2 className="text-2xl font-semibold text-[#e2f0ee] mb-4">
+                        <h2 className="text-xl sm:text-2xl font-semibold text-[#e2f0ee] mb-4">
                             A couple personal hobbies.
                         </h2>
                         <p className="text-[#e2f0ee]/70 leading-relaxed">
@@ -223,7 +224,7 @@ function About() {
 
                     {/* Current focus */}
                     <div>
-                        <h2 className="text-2xl font-semibold text-[#e2f0ee] mb-4">
+                        <h2 className="text-xl sm:text-2xl font-semibold text-[#e2f0ee] mb-4">
                             My current focus.
                         </h2>
                         <p className="text-[#e2f0ee]/70 leading-relaxed">

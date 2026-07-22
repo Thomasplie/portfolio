@@ -3,7 +3,7 @@ import {useEffect, useRef} from "react";
 // ─── Stripped version of SpatialCubes ────────────────────────────────────────
 // Only renders the distant background cubes — no foreground cubes, no mouse
 // tracking, no cursor cube. Designed for small contained areas like the
-// project image holes on the projects page.
+// project image holes on the projects page!
 
 const TEAL = "#3ECFB2";
 const FOV = 400;

@@ -6,7 +6,7 @@ function Future() {
     return (
         <div className="bg-[#0e2d33]">
 
-            {/* ── Hero ── */}
+            {/* Hero */}
             <HeaderBanner
                 overrideText={
                     <div>
@@ -61,16 +61,16 @@ function Future() {
                         This skill tree represents the most important steps I have taken during my journey as a
                         developer.
                         The nodes you see marked with a <span className="text-[#7F77DD] font-semibold">?</span> aren't
-                        empty spaces, they're oppertunities I just haven't explored yet. I have a lot of plans for the
+                        empty spaces, they're opportunities I just haven't explored yet. I have a lot of plans for the
                         future, like
-                        creating games, learning new coding languages, exploring other game-engines and ofcourse
+                        creating games, learning new coding languages, exploring other game engines, and of course
                         updating and improving
                         this portfolio, you name it.
                     </article>
 
                     <article className="mt-6 text-left leading-relaxed text-[#e2f0ee]/80 break-words">
                         If you want to be part of where this goes next, whether that's an internship,
-                        a collaboration, or just a conversation. Feel free to reach out.
+                        a collaboration, or just a conversation, feel free to reach out.
                     </article>
 
                 </div>

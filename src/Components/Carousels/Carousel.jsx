@@ -36,7 +36,7 @@ function Carousel({items, renderCard}) {
 
     const hoveredItem = data.find((p) => p.id === hoveredCardId) ?? null;
 
-    // ── Copy count ────────────────────────────────────────────────────────────
+    // Copy count
     useEffect(() => {
         const calculate = () => {
             if (!groupRef.current || !viewportRef.current) return;
@@ -55,7 +55,7 @@ function Carousel({items, renderCard}) {
         };
     }, []);
 
-    // ── Animation loop ────────────────────────────────────────────────────────
+    // Animation loop
     useEffect(() => {
         const tick = (time) => {
             if (!lastTimeRef.current) lastTimeRef.current = time;
@@ -82,7 +82,7 @@ function Carousel({items, renderCard}) {
         return () => cancelAnimationFrame(rafRef.current);
     }, []);
 
-    // ── Speed control ─────────────────────────────────────────────────────────
+    // Speed control
     useEffect(() => {
         if (!isPlaying) {
             targetSpeedRef.current = 0;
@@ -92,7 +92,7 @@ function Carousel({items, renderCard}) {
         targetSpeedRef.current = hoveredCardId !== null ? 0 : BASE_SPEED;
     }, [isPlaying, hoveredCardId]);
 
-    // ── Default card renderer — ProjectCard ───────────────────────────────────
+    // Default card renderer — ProjectCard
     function defaultRenderCard(item, {onMouseEnter, onMouseLeave}, className) {
         return (
             <ProjectCard
@@ -114,7 +114,7 @@ function Carousel({items, renderCard}) {
     return (
         <section className="py-6">
 
-            {/* ── Play / Pause button ── */}
+            {/* Play / Pause button */}
             <div className="mb-4 flex justify-center">
                 <button
                     type="button"
@@ -125,7 +125,7 @@ function Carousel({items, renderCard}) {
                 </button>
             </div>
 
-            {/* ── Viewport ── */}
+            {/* Viewport */}
             <div
                 ref={viewportRef}
                 className="carousel-viewport py-4"
@@ -166,7 +166,7 @@ function Carousel({items, renderCard}) {
                 </div>
             </div>
 
-            {/* ── Hovered item info card — only shown when using default renderer ── */}
+            {/* Hovered item info card  */}
             {!renderCard && (
                 <div
                     className="absolute left-0 right-0 top-full mt-8 mx-auto min-h-[140px] max-w-2xl rounded-2xl bg-[#0e2d33]/90 p-6 shadow-sm transition-all duration-300">

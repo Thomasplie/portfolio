@@ -1,5 +1,10 @@
 import {useEffect, useRef} from "react";
 
+// Hello developer! This file has been made by me and claude. If you'd think i would
+// do all of this math by myself i am truly flattered but incase you are here to check my skill, im sorry to dissapoint
+// this was a combined effort. Nevertheless, debugging this was a pain and so if you wish to reuse this be my guest!
+// The comments in the code should guide you well enough to be able to fine-tune this to your liking. Happy coding!
+
 // ─── constants ───────────────────────────────────────────────────────────────
 const TEAL = "#3ECFB2";
 const COLORS = [TEAL, "#ffffff", "#5af5d8", "#0a7a62", "#a0fff0"];

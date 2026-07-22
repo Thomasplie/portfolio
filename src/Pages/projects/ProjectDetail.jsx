@@ -4,7 +4,12 @@ import BlockEdgeDecoration from "../../Components/BlockEdgeDecoration.jsx";
 import projects from "../../data/projects.js";
 
 // Jagged hole image
-function ProjectImage({src, alt}) {
+// fit: "cover" (default) fills the frame and crops overflow — good for photos.
+// fit: "contain" shows the WHOLE image with empty space if needed — good for
+// screenshots/UI captures where cropping would cut off important content.
+function ProjectImage({src, alt, fit = "cover"}) {
+    const fitClass = fit === "contain" ? "object-contain" : "object-cover";
+
     return (
         <div className="relative flex-shrink-0 w-[260px] h-[320px]">
             <div
@@ -14,7 +19,7 @@ function ProjectImage({src, alt}) {
             <img
                 src={src}
                 alt={alt}
-                className="absolute inset-0 w-full h-full object-cover"
+                className={`absolute inset-0 w-full h-full ${fitClass}`}
                 style={{clipPath: jaggedClip}}
             />
         </div>
@@ -143,6 +148,26 @@ function ProjectDetail() {
                             </div>
                         )}
 
+                        {/* Credits & Attribution — for anything in the project that isn't yours */}
+                        {project.credits && (
+                            <div className="mt-8">
+                                <h2 className="text-xl font-semibold text-[#e2f0ee] mb-3">
+                                    Credits & Attribution
+                                </h2>
+                                <p className="text-[#e2f0ee]/70 leading-relaxed text-sm">
+                                    {project.credits}
+                                </p>
+                            </div>
+                        )}
+
+                        {/*
+                            ── External links ──────────────────────────────────
+                            Both use <a>, not <Link>, because GitHub and a live
+                            demo are OUTSIDE this app entirely. <Link> is only
+                            for internal routes handled by React Router (like
+                            "/my-projects" below). Using <Link> on an external
+                            URL would try to route inside the app and break.
+                        ── */}
                         <div className="flex flex-wrap gap-6 mt-4">
                             {project.github && (
                                 <a
@@ -163,7 +188,7 @@ function ProjectDetail() {
                                     className="inline-flex items-center gap-2 text-sm hover:underline"
                                     style={{color: accentColor}}
                                 >
-                                    Try it out yourself! →
+                                    Live Demo →
                                 </a>
                             )}
                         </div>
@@ -177,6 +202,7 @@ function ProjectDetail() {
 
                 </div>
 
+                {/* ── Back link for projects without screenshots — internal route, uses Link ── */}
                 {(!project.screenshots || project.screenshots.length === 0) && (
                     <div className="flex justify-center mt-16">
                         <Link to="/my-projects" className="text-[#09BC8A] hover:underline text-base font-medium">
@@ -219,6 +245,7 @@ function ProjectDetail() {
                                     <ProjectImage
                                         src={screenshot.src}
                                         alt={screenshot.caption ?? `${project.title} screenshot ${i + 1}`}
+                                        fit={screenshot.fit}
                                     />
                                     {/* Caption, shows custom text or a fallback */}
                                     <p className="flex-1 text-[#e2f0ee]/70 text-sm leading-relaxed">
@@ -229,6 +256,7 @@ function ProjectDetail() {
                         </div>
                     </div>
 
+                    {/* Back link — internal route, uses Link */}
                     <div className="flex justify-center mt-16">
                         <Link to="/my-projects" className="text-[#09BC8A] hover:underline text-base font-medium">
                             ← Back to all projects

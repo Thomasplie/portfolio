@@ -45,12 +45,13 @@ function About() {
                             Hey there 👋
                         </h2>
                         <p className="text-[#e2f0ee]/70 leading-relaxed mb-4">
-                            Hi I'm Thomas! A developer with a soft spot for games, good design and of course good vibes.
+                            Hi, I'm Thomas! A developer with a soft spot for games, good design, and of course good
+                            vibes.
                             I spend most of my time looking at a screen, as developers do. Whether it's a web app or a
                             game project,
                             I'm always up for the challenge.
 
-                            I take my work seriously, but not myself. If something isn't good enough I'll happily tear
+                            I take my work seriously, but not myself. If something isn't good enough, I'll happily tear
                             it down and start over.
                         </p>
                         <p className="text-[#e2f0ee]/70 leading-relaxed">
@@ -59,7 +60,7 @@ function About() {
                         </p>
                     </div>
 
-                    {/* Right — photo */}
+                    {/* Right  photo */}
                     <div className="flex-shrink-0 w-[260px] h-[320px] relative">
                         <div
                             className="absolute inset-0 bg-neutral-900"
@@ -106,7 +107,7 @@ function About() {
 
             </section>
 
-            {/* ── My Tools carousel ── */}
+            {/* My Tools carousel */}
             <Transition
                 minHeight="min-h-[400px]"
                 bgClass="bg-[#071a1e]"
@@ -162,7 +163,7 @@ function About() {
                 </div>
             </Transition>
 
-            {/* ── About me sections ── */}
+            {/* About me sections */}
             <section className="relative w-full py-24">
 
                 <BlockEdgeDecoration
@@ -183,7 +184,7 @@ function About() {
                             I bring a lot of drive to the projects I work on.
                             If something isn't good enough, I'd rather go back to the drawing board than push through
                             with a half-baked idea.
-                            Quality over speed. I am however also very flexible in what is, and isn't a good idea.
+                            Quality over speed. I am, however, also very flexible about what is and isn't a good idea.
                             <br>
                             </br>
                             I work closely with feedback.
@@ -192,10 +193,10 @@ function About() {
                             <br>
                             </br>
                             I'm comfortable both in a team and working independently.
-                            In a team setting I value clear ownership.
+                            In a team setting, I value clear ownership.
                             If I'm responsible for the user experience, that's where my full energy goes.
                             If it's keeping the codebase clean and structured, I commit to that just as deeply.
-                            I think projects run best when everyone is the final say in their own domain.
+                            I think projects run best when everyone has the final say in their own domain.
                         </p>
                     </div>
 
@@ -209,14 +210,14 @@ function About() {
                             It's where my patience comes from, and patience turns out to be surprisingly useful when
                             debugging at 11pm.
                             <br></br>
-                            Outside of screens I enjoy social outings and spending time with people,
+                            Outside of screens, I enjoy social outings and spending time with people,
                             though I'm equally happy working on personal projects at home. I don't really separate the
                             two. A good evening can be either.
                             <br></br>
                             Lately I've been on a pixel art journey.
                             Learning to create sprites that feel charming and alive is something I'm genuinely excited
                             about.
-                            I'm trying to get better so that i can reuse the sprites in my 2d games.
+                            I'm trying to get better so that I can reuse the sprites in my 2D games.
                         </p>
                     </div>
 
@@ -226,12 +227,12 @@ function About() {
                             My current focus.
                         </h2>
                         <p className="text-[#e2f0ee]/70 leading-relaxed">
-                            Right now I'm deepening my knowledge of Unity and pushing myself further into 2D game
+                            Right now, I'm deepening my knowledge of Unity and pushing myself further into 2D game
                             development.
-                            I want to get to a point where I can take a game from concept to become something I can be
+                            I want to get to a point where I can take a game from concept to becoming something I can be
                             proud of.
 
-                            On the web side of things I'm continuing to refine my frontend skills and looking for new
+                            On the web side of things, I'm continuing to refine my frontend skills and looking for new
                             ideas for design.
                         </p>
                     </div>

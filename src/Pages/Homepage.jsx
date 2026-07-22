@@ -20,22 +20,24 @@ function Homepage() {
                     </h2>
 
                     <article className="mt-4 text-left italic font-medium break-words text-[#e2f0ee]">
-                        I build interactive digital experiences. From creative web apps to game design projects.
+                        I build interactive digital experiences, from creative web apps to game design projects.
                     </article>
 
                     <article className="mt-6 text-left leading-relaxed text-[#e2f0ee] break-words">
                         Since you're here, you're probably curious about what I can actually do. <br/>
 
-                        My focus lies completely to creating the best possible experience for the User, thats the simple
+                        My focus lies completely on creating the best possible experience for the user, that's the
+                        simple
                         part of it. Whether it's a website
-                        or a game in the making I will always look at my work with a critical perspective and if I don't
-                        think it's good enough I will have to go back to the
-                        drawing board. Now that does sound very intense, but there's a lot of flexability that goes into
+                        or a game in the making, I will always look at my work with a critical perspective, and if I
+                        don't
+                        think it's good enough, I will have to go back to the
+                        drawing board. Now that does sound very intense, but there's a lot of flexibility that goes into
                         this way of thinking. <br/>
                     </article>
 
                     <article className="mt-6 text-left leading-relaxed text-[#e2f0ee] break-words">
-                        But more about this on the About me page. Take a look around, at my work, about me, or to see
+                        But more about this on the About Me page. Take a look around, at my work, about me, or to see
                         where I am heading next. See ya!
                     </article>
 
@@ -130,12 +132,12 @@ function Homepage() {
                     </h2>
 
                     <article className="mt-4 text-left text-[#e2f0ee]/80 wrap-break-word">
-                        Despite me having a lot of fun making this portfolio, and putting in a lot of effort. I am
-                        afraid I will leave this version as it is. I have many plans for further upgrades or should I
-                        say "level ups" for this website and I hope to improve the overall experience of visitors by
+                        Despite having a lot of fun making this portfolio, and putting in a lot of effort, I am
+                        afraid I will leave this version as it is. I have many plans for further upgrades, or should I
+                        say "level ups," for this website, and I hope to improve the overall experience of visitors by
                         making more things dynamic and storing data in an actual database. You can see more information
                         about this website at -portfolio project link- for more detailed plans.
-                        But for now I want to thank you for your time to explore my portfolio website. I hope you find
+                        But for now, I want to thank you for your time exploring my portfolio website. I hope you find
                         what you are looking for!
                     </article>
 

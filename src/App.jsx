@@ -6,6 +6,7 @@ import Future from "./Pages/Future.jsx";
 import ProjectsPage from "./Pages/projects/ProjectsPage.jsx";
 import ProjectDetail from "./Pages/projects/ProjectDetail.jsx";
 import Error from "./Pages/Error.jsx";
+import Copyright from "./Pages/Copyright.jsx";
 
 const router = createBrowserRouter([
     {
@@ -38,6 +39,10 @@ const router = createBrowserRouter([
             {
                 path: "*",
                 element: <Error/>,
+            },
+            {
+                path: "/copyright",
+                element: <Copyright/>
             }
         ],
     },

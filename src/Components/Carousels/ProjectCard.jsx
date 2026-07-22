@@ -34,14 +34,6 @@ function ProjectCard({
             onMouseLeave={onMouseLeave}
             aria-label={`${title} project card`}
         >
-            {/*
-                Total SVG canvas:
-                  width  = W + DEPTH   = 230
-                  height = DEPTH + H   = 270
-                Top face sits in the top DEPTH rows.
-                Front face sits from y=DEPTH to y=DEPTH+H.
-                Right panel sits from x=W to x=W+DEPTH.
-            */}
             <svg
                 width={W + DEPTH}
                 height={H + DEPTH}
@@ -58,7 +50,7 @@ function ProjectCard({
                     </clipPath>
                 </defs>
 
-                {/* ── Top face ── */}
+                {/* Top face  */}
                 <polygon
                     points={`0,${DEPTH} ${W},${DEPTH} ${W + DEPTH},0 ${DEPTH},0`}
                     fill={TOP}
@@ -67,7 +59,7 @@ function ProjectCard({
                 <line x1={DEPTH} y1="0" x2={W + DEPTH} y2="0" stroke={TEAL} strokeWidth="1" opacity="0.4"/>
                 <line x1={W} y1={DEPTH} x2={W + DEPTH} y2="0" stroke={TEAL} strokeWidth="1" opacity="0.6"/>
 
-                {/* ── Front face — image ── */}
+                {/* Front face  */}
                 <image
                     href={image}
                     x="0" y={DEPTH}

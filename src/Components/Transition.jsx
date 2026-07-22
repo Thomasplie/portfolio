@@ -21,7 +21,7 @@ function Transition({
                 </div>
             )}
 
-            {/* Top fade — only renders when fadeColor is provided */}
+            {/* Top fade */}
             {fadeColor && (
                 <div
                     className="absolute top-0 left-0 right-0 z-20 pointer-events-none"
@@ -40,7 +40,7 @@ function Transition({
                 {children}
             </div>
 
-            {/* Bottom fade — only renders when fadeColor is provided */}
+            {/* Bottom fade */}
             {fadeColor && (
                 <div
                     className="absolute bottom-0 left-0 right-0 z-20 pointer-events-none"

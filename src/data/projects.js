@@ -12,6 +12,8 @@ const projects = [
         link: "/my-projects/netna",
         github: "https://github.com/Thomasplie/Team6-Project-Net",
         demoUrl: "https://dtb354.github.io/Team6-Project-Net/",
+        credits: "Music used in this project is copyrighted and used for educational purposes as part of an HR CMGT assignment. " +
+            "All credit for music goes to the original artists. Full credit for the rest of the project's assets and code goes to my teammates and myself as a team.",
         image: `${base}images/Netna.png`,
         role: "Player Designer",
         teamSize: 5,
@@ -26,11 +28,11 @@ const projects = [
         ],
         screenshots: [
             {
-                src: `${base}images/projects/netna-screen1.png`,
+                src: `${base}images/netna-screen2.png`,
                 caption: "The player sprite sheet I created — 8 directional movement animations."
             },
             {
-                src: `${base}images/projects/netna-screen2.png`,
+                src: `${base}images/netna-screen1.png`,
                 caption: "The shiny monster variants I added as a bonus feature."
             },
         ],
@@ -46,6 +48,7 @@ const projects = [
         link: "/my-projects/progression-assessment",
         github: "https://github.com/Thomasplie/signatuur",
         demoUrl: "https://thomasplie.github.io/signatuur/",
+        credits: null,
         image: `${base}images/Signatuur2.png`,
         role: "Frontend Developer",
         teamSize: 1,
@@ -68,6 +71,7 @@ const projects = [
         link: "/my-projects/wybel-class-selector",
         github: "https://github.com/Thomasplie/prg8Wynnbot",
         demoUrl: null,
+        credits: null,
         image: `${base}images/Wybot.png`,
         role: "Full-stack Developer",
         teamSize: 1,
@@ -78,10 +82,7 @@ const projects = [
         contribution: [
             "Everything — from the frontend to getting the AI to work with LangChain. This was my own personal project, built entirely solo.",
         ],
-        screenshots: [
-            {src: `${base}images/projects/wybel-screen1.png`, caption: "Screenshot 1"},
-            {src: `${base}images/projects/wybel-screen2.png`, caption: "Screenshot 2"},
-        ],
+        screenshots: [],
     },
     {
         id: 4,
@@ -94,6 +95,7 @@ const projects = [
         link: "/my-projects/easyfit",
         github: "https://github.com/Thomasplie/Easyfit",
         demoUrl: null,
+        credits: "Full credit for the rest of the project's assets and code goes to my teammates and myself as a team.",
         image: `${base}images/Easyfit_LOGO.png`,
         role: "Frontend Lead",
         teamSize: 3,
@@ -106,8 +108,7 @@ const projects = [
             "Understanding the user in this case was everything — the design had to be functional, friendly and accessible in a way that went far beyond standard UX thinking.",
         ],
         screenshots: [
-            {src: `${base}images/projects/easyfit-screen1.png`, caption: "Screenshot 1"},
-            {src: `${base}images/projects/easyfit-screen2.png`, caption: "Screenshot 2"},
+            {src: `${base}images/easyfit-screen1.png`, caption: "Layout of the interface.", fit: "contain"},
         ],
     },
 ];
